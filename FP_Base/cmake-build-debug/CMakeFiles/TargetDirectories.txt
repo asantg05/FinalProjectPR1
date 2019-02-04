@@ -1,0 +1,3 @@
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/rebuild_cache.dir
