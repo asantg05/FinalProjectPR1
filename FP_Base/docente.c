@@ -38,6 +38,25 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
         { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false}
 };
 
+void creacionPersonas(){
+    int dimensionVector, id=0, i=0, primerJugador, j=0, n=0;
+    dimensionVector= cantidadJugadores();
+    Persona jugadores[dimensionVector];
+
+    for(i=0;i<dimensionVector;i++){ //Assigning id to Players
+        jugadores[i].id=id;
+        id++;
+    }
+    //Let's see who goes first
+    primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
+
+    for(j=0;j<dimensionVector;j++){
+        jugadores[primerJugador]=jugadores[n];
+        primerJugador++;
+    }
+
+}
+
 /**
  * Initializing the list of Cards
  * @param lista
@@ -47,10 +66,10 @@ void inicializaLista(Lista *lista){
 }
 
 /**
- * It allows to create more than one card
+ * It creates all the cards, 26 cards
  * @param lista
  */
-void crearVariasCartas(Lista *lista){
+void crearTodasLasCartas(Lista *lista){
     int i;
 
     for(i=0;i<N_MAX_CARTAS;i++){
@@ -66,7 +85,7 @@ void crearVariasCartas(Lista *lista){
 Carta* crearCarta(Lista *lista){
 
     Informacion infoCarta;
-
+    infoCarta = inicializarCarta();
 
     return insertarCarta(lista,infoCarta);
 }
@@ -74,16 +93,30 @@ Carta* crearCarta(Lista *lista){
 Informacion inicializarCarta(){
     Informacion iCarta;
 
-    inicializaPersona();
-
+    //Let's initialize all the variables of iCarta
+    iCarta.persona.id=0;
+    //modificaPersona(iCarta);
+    strcpy(iCarta.persona.nombre , escribirNombre());
     iCarta.equipo=0;
+    iCarta.numArmadas=0;
+    iCarta.numeroCarta=0;
 
+    return iCarta;
 }
 
-void inicializaPersona(){
+int contadorCartas(Lista * lista){
+    int counter = 0;
+    Carta * it = lista->head;
+    while(it != NULL){
+        counter++;
+        it=it->next;
+    }
+    return counter;
+}
 
-    Informacion iCarta;
-    int numeroPersonas;
+char* escribirNombre(){
+
+    char nombre[DIM_NAME];
 
     //Creating names in an list for using it later
     char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
@@ -95,53 +128,35 @@ void inicializaPersona(){
             "Stefano"
     };
 
-    numeroPersonas= cantidadJugadores();
-    Persona persona;   //Vector Declaration
+    //Assigning a name to the person in the card
+    //strcpy(persona.nombre, listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]); //Assigning names to vectorJugadores
+    strcpy(nombre , listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]);
+
+    return nombre;
+}
+
+/**
+ * Used for applying a Name and an id for the players
+ * @param iCarta
+ */
+void modificaPersona(Informacion iCarta){
+
+    Persona persona;   //Declaration of Persona
+
+    //Creating names in an list for using it later
+    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
+            "Andres",
+            "Alvaro",
+            "Ivan",
+            "Matteo",
+            "Fabio",
+            "Stefano"
+    };
 
     //Assigning a name to the person in the card
     strcpy(persona.nombre, listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]); //Assigning names to vectorJugadores
     strcpy(iCarta.persona.nombre , persona.nombre);
 
-    persona.id=0;//We put it first to 0, and then we'll see.
-    iCarta.persona.id = persona.id;
-}
-
-int numeroArmadasIniciales(){
-    int nJugadores,armadas;
-    nJugadores=cantidadJugadores();
-
-    if(nJugadores==3){
-        armadas=DIM_3_PLAYERS; //35
-    }
-    else if(nJugadores==4){
-        armadas=DIM_4_PLAYERS; //30
-    }
-    else if(nJugadores==5){
-        armadas=DIM_5_PLAYERS; //25
-    }
-    else{
-        armadas= DIM_6_PLAYERS; //20
-    }
-
-    return armadas;
-}
-
-/**
- * Used for knowing which player begins the game
- * @return int
- */
-int empiezaPrimero(){
-    int nJugadores=cantidadJugadores();
-
-    return generateRandom(0,nJugadores);
-}
-
-/**
- * With this function, we know how many players are playing
- * @return random number of players (int)
- */
-int cantidadJugadores(){
-    return generateRandom(N_MIN_JUGADORES,N_MAX_JUGADORES);
 }
 
 /**
@@ -174,6 +189,77 @@ Carta* colocarCarta(){
         exit(-1);
 
     return espacio;
+}
+
+void imprimirListaCartas(Lista * lista){
+    Carta *it = NULL;
+    if(listaVacia(lista)==true){
+        printf("\nNo elements in the list");
+    }
+    it=lista->head;
+    while(it!=NULL) {
+        imprimirCarta(it->inf);
+        it = it->next;
+    }
+}
+
+void imprimirCarta(Informacion carta){
+    printf("\nNombre: %s ID: %d Armadas: %d Equipo: %d Numero Carta: %d" , carta.persona.nombre , carta.persona.id , carta.numArmadas
+    ,carta.equipo,carta.numeroCarta);
+}
+
+void imprimirInicio(Informacion inicio){
+    printf("Number of Players: ");
+    printf("\nPlayers Playing: ");
+    printf("\n");
+    printf("Name of Player: ");
+    printf("\tArmy Color: ");
+    printf("\tNumber of Cards: ");
+    printf("\tList of Cards: ");
+    /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13*/
+}
+
+int numeroArmadasIniciales(){
+    int nJugadores,armadas;
+    nJugadores=cantidadJugadores();
+
+    if(nJugadores==3){
+        armadas=DIM_3_PLAYERS; //35
+    }
+    else if(nJugadores==4){
+        armadas=DIM_4_PLAYERS; //30
+    }
+    else if(nJugadores==5){
+        armadas=DIM_5_PLAYERS; //25
+    }
+    else{
+        armadas= DIM_6_PLAYERS; //20
+    }
+
+    return armadas;
+}
+
+/**
+ * Used for knowing which player begins the game
+ * @return int
+ */
+int empiezaPrimero(int nJugadores){
+    return generateRandom(0,nJugadores);
+}
+
+/**
+ * With this function, we know how many players are playing
+ * @return random number of players (int)
+ */
+int cantidadJugadores(){
+    return generateRandom(N_MIN_JUGADORES,N_MAX_JUGADORES);
+}
+
+_Bool listaVacia(Lista *lista){
+    if(lista->head==NULL)//se la lista è vuota
+        return true;
+    else
+        return false;
 }
 
 void generateSeed(){

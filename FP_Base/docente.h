@@ -1,6 +1,7 @@
 #ifndef FP_BASE_DOCENTE_H
 #define FP_BASE_DOCENTE_H
 
+#include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
@@ -18,19 +19,22 @@
 #define DIM_4_PLAYERS 30
 #define DIM_5_PLAYERS 25
 #define DIM_6_PLAYERS 20
+#define DIM_NUM_CARTAS 26
 
 typedef enum {CAFE,BIRRA,VINO}Equipo; //0,1,2
 typedef enum {ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO}Color; //0,1,2,3,4,5
 
 typedef struct{
     int id;
+    int numCartas;
+    int listaCartas[DIM_NUM_CARTAS+1];
     char nombre[DIM_NAME+1];
 }Persona;
 
 //Information that is gonna be saved in the List
 typedef struct {
+    int numeroCarta;    //Territory
     int numArmadas;
-    int numeroCarta;
     Persona persona;
     Equipo equipo;
 } Informacion;
@@ -51,17 +55,29 @@ typedef struct {
 Carta* crearCarta(Lista *lista);
 Carta* insertarCarta(Lista * lista, Informacion infoCarta);
 Carta* colocarCarta();
-void crearVariasCartas(Lista *lista);
+void crearTodasLasCartas(Lista *lista);
 Informacion inicializarCarta();
-void inicializaPersona();
+void creacionPersonas();
+
+void modificaPersona(Informacion iCarta);
 
 int numeroArmadasIniciales();
 int cantidadJugadores();
-int empiezaPrimero();
+int empiezaPrimero(int nJugadores);
+int contadorCartas(Lista * lista);
 
 void inicializaLista(Lista *lista);
+
+_Bool listaVacia(Lista *lista);
+char *escribirNombre();
 void generateSeed();
 int generateRandom(int min, int max);
 _Bool isAdjacent(int idFirst, int idSecond);
+
+
+//-------PRINTS----------
+void imprimirInicio(Informacion inicio);
+void imprimirListaCartas(Lista * lista);
+void imprimirCarta(Informacion carta);
 
 #endif

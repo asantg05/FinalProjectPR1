@@ -5,9 +5,11 @@
 int main() {
     Lista* lista;
 
-    inicializaLista(&lista);
+    //inicializaLista(&lista);
     generateSeed();
-    crearVariasCartas(&lista);
+    //crearTodasLasCartas(&lista);
+    //imprimirInicio(&lista);
+    //imprimirListaCartas(&lista);
 
 
     return 0;
