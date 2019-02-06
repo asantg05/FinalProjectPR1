@@ -39,28 +39,46 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
 };
 
 void creacionPersonas(){
-    int dimensionVector, id=0, i=0, primerJugador, j=0, n=0;
+    int dimensionVector, id=0, i=0, primerJugador, j=0, n=0 ,z , contador=0;
     dimensionVector= cantidadJugadores();
-    Persona jugadores[dimensionVector];
+    Persona jugadores[dimensionVector] , jugadoresOrdenados[dimensionVector];
+    printf("%d " , dimensionVector);
 
     for(i=0;i<dimensionVector;i++){ //Assigning id to Players
         jugadores[i].id=id;
         id++;
     }
+
+    for(z=0;z<dimensionVector;z++){
+       printf("Jugadores: %d " , jugadores[z].id);
+    }
+
     //Let's see who goes first
     primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
 
-    for(j=0;j<dimensionVector;j++){
-        jugadores[primerJugador]=jugadores[n];
-        primerJugador++;
+   jugadoresOrdenados[0].id=primerJugador;   //2
+
+    for(j=1;j<dimensionVector;j++){
+        jugadoresOrdenados[j].id=(jugadoresOrdenados[0].id+j)%(dimensionVector); //0,1,2,3,4,5 --> jugadoresOrdenados: 2,3,4,5,0,1
     }
+
+    for(z=0;z<dimensionVector;z++){
+        printf("Aux: %d " , jugadoresOrdenados[z].id);
+    }
+
+    /*
+    for(j=0;j<dimensionVector;j++){ //0,1,2,3,4,5
+       if(primerJugador==dimensionVector-1){
+           jugadoresOrdenados[contador] = jugadores[0].id;
+       }else{
+           jugadoresOrdenados[j]=jugadores[primerJugador+1].id;
+           contador++;
+       }
+
+    }*/
 
 }
 
-/**
- * Initializing the list of Cards
- * @param lista
- */
 void inicializaLista(Lista *lista){
     lista->head=NULL;
 }
@@ -204,8 +222,8 @@ void imprimirListaCartas(Lista * lista){
 }
 
 void imprimirCarta(Informacion carta){
-    printf("\nNombre: %s ID: %d Armadas: %d Equipo: %d Numero Carta: %d" , carta.persona.nombre , carta.persona.id , carta.numArmadas
-    ,carta.equipo,carta.numeroCarta);
+    printf("\nTerritory: %d Owner: %d Team: %d Amount Army: %d" ,carta.numeroCarta , carta.persona.id, carta.equipo,
+            carta.numArmadas);
 }
 
 void imprimirInicio(Informacion inicio){
@@ -252,7 +270,7 @@ int empiezaPrimero(int nJugadores){
  * @return random number of players (int)
  */
 int cantidadJugadores(){
-    return generateRandom(N_MIN_JUGADORES,N_MAX_JUGADORES);
+    return generateRandom(3,6);
 }
 
 _Bool listaVacia(Lista *lista){

@@ -7,6 +7,7 @@ int main() {
 
     //inicializaLista(&lista);
     generateSeed();
+    creacionPersonas();
     //crearTodasLasCartas(&lista);
     //imprimirInicio(&lista);
     //imprimirListaCartas(&lista);

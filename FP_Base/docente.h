@@ -35,7 +35,7 @@ typedef struct{
 typedef struct {
     int numeroCarta;    //Territory
     int numArmadas;
-    Persona persona;
+    Persona persona; //--> ID
     Equipo equipo;
 } Informacion;
 
@@ -79,5 +79,6 @@ _Bool isAdjacent(int idFirst, int idSecond);
 void imprimirInicio(Informacion inicio);
 void imprimirListaCartas(Lista * lista);
 void imprimirCarta(Informacion carta);
+void imprimirVector(int a[], int tam);
 
 #endif
