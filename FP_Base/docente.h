@@ -79,6 +79,6 @@ _Bool isAdjacent(int idFirst, int idSecond);
 void imprimirInicio(Informacion inicio);
 void imprimirListaCartas(Lista * lista);
 void imprimirCarta(Informacion carta);
-void imprimirVector(int a[], int tam);
+void imprimirVector(Persona a[], int tam);
 
 #endif

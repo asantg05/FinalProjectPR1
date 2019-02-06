@@ -41,30 +41,36 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
 void creacionPersonas(){
     int dimensionVector, id=0, i=0, primerJugador, j=0, n=0 ,z , contador=0;
     dimensionVector= cantidadJugadores();
-    Persona jugadores[dimensionVector] , jugadoresOrdenados[dimensionVector];
-    printf("%d " , dimensionVector);
+
+    Persona *jugadores;
+    Persona *jugadoresOrdenados;
+
+    jugadores=malloc(sizeof(Persona)*dimensionVector);
+    jugadoresOrdenados=malloc(sizeof(Persona)*dimensionVector);
+
+    jugadores[dimensionVector];
+    jugadoresOrdenados[dimensionVector];
+    //Persona jugadores[dimensionVector] , jugadoresOrdenados[dimensionVector];
 
     for(i=0;i<dimensionVector;i++){ //Assigning id to Players
         jugadores[i].id=id;
         id++;
     }
 
-    for(z=0;z<dimensionVector;z++){
-       printf("Jugadores: %d " , jugadores[z].id);
-    }
+    printf("Vector sin Ordenar: ");
+    imprimirVector(jugadores,dimensionVector);
 
     //Let's see who goes first
     primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
 
-   jugadoresOrdenados[0].id=primerJugador;   //2
+    jugadoresOrdenados[0].id=primerJugador;   //2
 
     for(j=1;j<dimensionVector;j++){
         jugadoresOrdenados[j].id=(jugadoresOrdenados[0].id+j)%(dimensionVector); //0,1,2,3,4,5 --> jugadoresOrdenados: 2,3,4,5,0,1
     }
 
-    for(z=0;z<dimensionVector;z++){
-        printf("Aux: %d " , jugadoresOrdenados[z].id);
-    }
+    printf("\nVector Ordenado: ");
+    imprimirVector(jugadoresOrdenados,dimensionVector);
 
     /*
     for(j=0;j<dimensionVector;j++){ //0,1,2,3,4,5
@@ -74,9 +80,15 @@ void creacionPersonas(){
            jugadoresOrdenados[j]=jugadores[primerJugador+1].id;
            contador++;
        }
-
     }*/
 
+}
+
+void imprimirVector(Persona a[] , int tam){
+    int i;
+    for(i=0;i<tam;i++){
+        printf("%d " , a[i].id);
+    }
 }
 
 void inicializaLista(Lista *lista){
