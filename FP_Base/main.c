@@ -11,6 +11,7 @@ int main() {
     //crearTodasLasCartas(&lista);
     //imprimirInicio(&lista);
     //imprimirListaCartas(&lista);
+    //vaciarListaCartas(&lista);
 
 
     return 0;

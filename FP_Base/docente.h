@@ -27,8 +27,10 @@ typedef enum {ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO}Color; //0,1,2,3,4,5
 typedef struct{
     int id;
     int numCartas;
+    int numArmadas;
     int listaCartas[DIM_NUM_CARTAS+1];
     char nombre[DIM_NAME+1];
+    Color color;
 }Persona;
 
 //Information that is gonna be saved in the List
@@ -40,38 +42,44 @@ typedef struct {
 } Informacion;
 
 //Carta is the territory
-typedef struct carta {
+struct carta{
     Informacion inf;
     struct carta *next; //Pointer to the next element
-} Carta;
+    //struct carta *prev;
+};
 
-//Structure of the list. We only have a head of the list because is linear.
+typedef struct carta Carta;
+
+//Structure of the list. We only have a first of the list because is linear.
 typedef struct {
-    Carta* head;
+    Carta* first;
+    //Carta* last;
 } Lista;
 
 //----FUNCTIONS----
 
+void risika();
 Carta* crearCarta(Lista *lista);
 Carta* insertarCarta(Lista * lista, Informacion infoCarta);
 Carta* colocarCarta();
-void crearTodasLasCartas(Lista *lista);
 Informacion inicializarCarta();
+void inicializaLista(Lista *lista);
+void crearTodasLasCartas(Lista *lista);
 void creacionPersonas();
+void vaciarListaCartas(Lista *lista);
+void vaciarCarta(Carta *carta);
 
-void modificaPersona(Informacion iCarta);
-
-int numeroArmadasIniciales();
+int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
 int contadorCartas(Lista * lista);
 
-void inicializaLista(Lista *lista);
 
 _Bool listaVacia(Lista *lista);
 char *escribirNombre();
 void generateSeed();
 int generateRandom(int min, int max);
+int aumentador();
 _Bool isAdjacent(int idFirst, int idSecond);
 
 
@@ -80,5 +88,6 @@ void imprimirInicio(Informacion inicio);
 void imprimirListaCartas(Lista * lista);
 void imprimirCarta(Informacion carta);
 void imprimirVector(Persona a[], int tam);
+
 
 #endif

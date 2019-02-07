@@ -38,8 +38,16 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
         { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false}
 };
 
+void risika(){
+    creacionPersonas();
+    Lista mazo;
+
+    inicializaLista(&mazo);
+}
+
 void creacionPersonas(){
-    int dimensionVector, id=0, i=0, primerJugador, j=0, n=0 ,z , contador=0;
+    int dimensionVector, id=0, i=0, primerJugador, j=0;
+    _Bool nombresIguales=false;
     dimensionVector= cantidadJugadores();
 
     Persona *jugadores;
@@ -57,8 +65,8 @@ void creacionPersonas(){
         id++;
     }
 
-    printf("Vector sin Ordenar: ");
-    imprimirVector(jugadores,dimensionVector);
+    //printf("Vector sin Ordenar: ");
+    //imprimirVector(jugadores,dimensionVector);
 
     //Let's see who goes first
     primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
@@ -69,7 +77,29 @@ void creacionPersonas(){
         jugadoresOrdenados[j].id=(jugadoresOrdenados[0].id+j)%(dimensionVector); //0,1,2,3,4,5 --> jugadoresOrdenados: 2,3,4,5,0,1
     }
 
-    printf("\nVector Ordenado: ");
+    //We assign the initial number of armies to the players
+    for(i=0;i<dimensionVector;i++){
+        jugadoresOrdenados[i].numArmadas=numeroArmadasIniciales(dimensionVector);
+    }
+
+    //We assign random names to the players
+    strcpy(jugadoresOrdenados[0].nombre , "Andres");
+    strcpy(jugadoresOrdenados[1].nombre , "Adrian");
+    strcpy(jugadoresOrdenados[2].nombre , "Ivan");
+    strcpy(jugadoresOrdenados[3].nombre , "Alvaro");
+    strcpy(jugadoresOrdenados[4].nombre , "Stefano");
+    strcpy(jugadoresOrdenados[5].nombre , "Fabio");
+
+    //We assign random colors to the players: ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO
+
+    jugadoresOrdenados[0].color=ROJO;
+    jugadoresOrdenados[1].color=VERDE;
+    jugadoresOrdenados[2].color=AMARILLO;
+    jugadoresOrdenados[3].color=VIOLETA;
+    jugadoresOrdenados[4].color=AZUL;
+    jugadoresOrdenados[5].color=NEGRO;
+
+    printf("Vector Ordenado: \n");
     imprimirVector(jugadoresOrdenados,dimensionVector);
 
     /*
@@ -81,18 +111,18 @@ void creacionPersonas(){
            contador++;
        }
     }*/
-
 }
 
 void imprimirVector(Persona a[] , int tam){
     int i;
     for(i=0;i<tam;i++){
-        printf("%d " , a[i].id);
+        printf("Player %d :%s - Armadas=%d " , a[i].id, a[i].nombre, a[i].numArmadas);
+        printf("\n");
     }
 }
 
 void inicializaLista(Lista *lista){
-    lista->head=NULL;
+    lista->first=NULL;
 }
 
 /**
@@ -134,59 +164,31 @@ Informacion inicializarCarta(){
     return iCarta;
 }
 
-int contadorCartas(Lista * lista){
-    int counter = 0;
-    Carta * it = lista->head;
-    while(it != NULL){
-        counter++;
-        it=it->next;
-    }
-    return counter;
-}
-
 char* escribirNombre(){
 
     char nombre[DIM_NAME];
+    int i=1, jugadores;
+    jugadores=cantidadJugadores();
 
     //Creating names in an list for using it later
     char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
             "Andres",
             "Alvaro",
             "Ivan",
-            "Matteo",
+            "Adrian",
             "Fabio",
             "Stefano"
     };
 
     //Assigning a name to the person in the card
-    //strcpy(persona.nombre, listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]); //Assigning names to vectorJugadores
     strcpy(nombre , listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]);
 
     return nombre;
 }
 
-/**
- * Used for applying a Name and an id for the players
- * @param iCarta
- */
-void modificaPersona(Informacion iCarta){
-
-    Persona persona;   //Declaration of Persona
-
-    //Creating names in an list for using it later
-    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
-            "Andres",
-            "Alvaro",
-            "Ivan",
-            "Matteo",
-            "Fabio",
-            "Stefano"
-    };
-
-    //Assigning a name to the person in the card
-    strcpy(persona.nombre, listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]); //Assigning names to vectorJugadores
-    strcpy(iCarta.persona.nombre , persona.nombre);
-
+int aumentador(){
+    int a=0;
+    return a++;
 }
 
 /**
@@ -201,8 +203,8 @@ Carta* insertarCarta(Lista * lista, Informacion infoCarta){
     cartaNueva = colocarCarta();
 
     cartaNueva->inf=infoCarta;//l'elemento da inserire prende il contatto passato come paramentro
-    cartaNueva->next=lista->head;//la testa della lista diventa il next del nuovoElemento
-    lista->head= cartaNueva;//la testa della lista diventa il next del nuovoElemento
+    cartaNueva->next=lista->first;//la testa della lista diventa il next del nuovoElemento
+    lista->first= cartaNueva;//la testa della lista diventa il next del nuovoElemento
 
     return cartaNueva;
 }
@@ -226,11 +228,36 @@ void imprimirListaCartas(Lista * lista){
     if(listaVacia(lista)==true){
         printf("\nNo elements in the list");
     }
-    it=lista->head;
+    it=lista->first;
     while(it!=NULL) {
         imprimirCarta(it->inf);
         it = it->next;
     }
+}
+
+void vaciarListaCartas(Lista *lista){
+    Carta *aux=NULL;
+    Carta *it= lista->first;
+
+    //Se la lista è già vuota non svuotarla
+    if(listaVacia(lista)==true){
+        printf("\nThe list is empty");
+        return;
+    }
+
+    while(it->next!=NULL){
+        aux=it->next;
+        vaciarCarta(it);
+        it=aux;
+    }
+    lista->first=NULL;//se non setti la testa a NULL, non si cancella la lista,
+
+    printf("\nList of Cards empty");
+}
+
+void vaciarCarta(Carta *carta){
+    free(carta);
+    carta=NULL;
 }
 
 void imprimirCarta(Informacion carta){
@@ -249,9 +276,18 @@ void imprimirInicio(Informacion inicio){
     /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13*/
 }
 
-int numeroArmadasIniciales(){
-    int nJugadores,armadas;
-    nJugadores=cantidadJugadores();
+int contadorCartas(Lista * lista){
+    int counter = 0;
+    Carta * it = lista->first;
+    while(it != NULL){
+        counter++;
+        it=it->next;
+    }
+    return counter;
+}
+
+int numeroArmadasIniciales(int nJugadores){
+    int armadas;
 
     if(nJugadores==3){
         armadas=DIM_3_PLAYERS; //35
@@ -286,21 +322,21 @@ int cantidadJugadores(){
 }
 
 _Bool listaVacia(Lista *lista){
-    if(lista->head==NULL)//se la lista è vuota
+    if(lista->first==NULL)//se la lista è vuota
         return true;
     else
         return false;
 }
 
-void generateSeed(){
-    srand(time(NULL));
+_Bool isAdjacent(int idFirst, int idSecond){
+    return t[idFirst][idSecond];
 }
 
 int generateRandom(int min, int max){
     return min + rand()%(max-min+1);
 }
 
-_Bool isAdjacent(int idFirst, int idSecond){
-    return t[idFirst][idSecond];
+void generateSeed(){
+    srand(time(NULL));
 }
 
