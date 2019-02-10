@@ -37,7 +37,7 @@ typedef struct{
 typedef struct {
     int numeroCarta;    //Territory
     int numArmadas;
-    Persona persona; //--> ID
+    Persona propietario; //--> ID
     Equipo equipo;
 } Informacion;
 
@@ -45,7 +45,7 @@ typedef struct {
 struct carta{
     Informacion inf;
     struct carta *next; //Pointer to the next element
-    //struct carta *prev;
+    struct carta *prev;
 };
 
 typedef struct carta Carta;
@@ -53,7 +53,7 @@ typedef struct carta Carta;
 //Structure of the list. We only have a first of the list because is linear.
 typedef struct {
     Carta* first;
-    //Carta* last;
+    Carta* last;
 } Lista;
 
 //----FUNCTIONS----
@@ -65,26 +65,29 @@ Carta* colocarCarta();
 Informacion inicializarCarta();
 void inicializaLista(Lista *lista);
 void crearTodasLasCartas(Lista *lista);
-void creacionPersonas();
+Persona* creacionPersonas(int dimensionVector);
 void vaciarListaCartas(Lista *lista);
 void vaciarCarta(Carta *carta);
+
+void repartirTerritorio(Lista *lista);
+void repartirCartas(Lista *lista , Persona* jugadores,int nJugadores);
+void repartirEquipo(Lista *lista);
 
 int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
 int contadorCartas(Lista * lista);
-
+char* escribirNombre();
+char* imprimirColor(Persona jugador);
 
 _Bool listaVacia(Lista *lista);
-char *escribirNombre();
 void generateSeed();
 int generateRandom(int min, int max);
-int aumentador();
 _Bool isAdjacent(int idFirst, int idSecond);
 
 
 //-------PRINTS----------
-void imprimirInicio(Informacion inicio);
+void imprimirInicio(Persona* listaJugadores , int nJugadores);
 void imprimirListaCartas(Lista * lista);
 void imprimirCarta(Informacion carta);
 void imprimirVector(Persona a[], int tam);

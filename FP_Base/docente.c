@@ -39,34 +39,84 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
 };
 
 void risika(){
-    creacionPersonas();
-    Lista mazo;
+    Persona *jugadores;
+    int nJugadores;
 
+    nJugadores= cantidadJugadores();
+    jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
+
+    Lista mazo; //In this list, we will do all the changes
     inicializaLista(&mazo);
+    crearTodasLasCartas(&mazo); //Let's create the 26 cards
+
+    repartirCartas(&mazo , jugadores, nJugadores);
+    repartirTerritorio(&mazo);
+    repartirEquipo(&mazo);
+
+    //imprimirListaCartas(&mazo);
+    //imprimirInicio(jugadores,nJugadores);
 }
 
-void creacionPersonas(){
-    int dimensionVector, id=0, i=0, primerJugador, j=0;
-    _Bool nombresIguales=false;
-    dimensionVector= cantidadJugadores();
+int getNumeroJugadores(int a){
+    return a;
+}
 
-    Persona *jugadores;
+void repartirEquipo(Lista *lista){
+    Carta *it = lista->first;
+
+    while(it!=NULL){
+        if(it->inf.numeroCarta<=11){
+            it->inf.equipo=CAFE;
+        }
+        else if(it->inf.numeroCarta>=12 && it->inf.numeroCarta<=19){
+            it->inf.equipo=BIRRA;
+        } else{
+            it->inf.equipo=VINO;
+        }
+
+        it=it->next;
+    }
+}
+
+void repartirTerritorio(Lista *lista){
+    Carta *it = lista->first;
+    int k=0;
+
+    while(it!=NULL){
+        it->inf.numeroCarta=k;
+        it=it->next;
+        k++;
+    }
+}
+
+void repartirCartas(Lista *lista , Persona* jugadores, int nJugadores){
+    Carta *it = lista->first;
+    int k=0;
+
+    while(it!=NULL){
+        it->inf.propietario.id=jugadores[k%nJugadores].id;
+        it=it->next;
+        k++;
+    }
+}
+
+Persona* creacionPersonas(int dimensionVector){
+    int id=0, i=0, primerJugador, j=0;
+
+    Persona *jugadoresInicio;
     Persona *jugadoresOrdenados;
 
-    jugadores=malloc(sizeof(Persona)*dimensionVector);
+    jugadoresInicio=malloc(sizeof(Persona)*dimensionVector);
     jugadoresOrdenados=malloc(sizeof(Persona)*dimensionVector);
 
-    jugadores[dimensionVector];
+    jugadoresInicio[dimensionVector];
     jugadoresOrdenados[dimensionVector];
-    //Persona jugadores[dimensionVector] , jugadoresOrdenados[dimensionVector];
+    //Persona jugadoresInicio[dimensionVector] , jugadoresOrdenados[dimensionVector];
 
     for(i=0;i<dimensionVector;i++){ //Assigning id to Players
-        jugadores[i].id=id;
+        jugadoresInicio[i].id=id;
         id++;
     }
-
-    //printf("Vector sin Ordenar: ");
-    //imprimirVector(jugadores,dimensionVector);
 
     //Let's see who goes first
     primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
@@ -91,7 +141,6 @@ void creacionPersonas(){
     strcpy(jugadoresOrdenados[5].nombre , "Fabio");
 
     //We assign random colors to the players: ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO
-
     jugadoresOrdenados[0].color=ROJO;
     jugadoresOrdenados[1].color=VERDE;
     jugadoresOrdenados[2].color=AMARILLO;
@@ -102,21 +151,13 @@ void creacionPersonas(){
     printf("Vector Ordenado: \n");
     imprimirVector(jugadoresOrdenados,dimensionVector);
 
-    /*
-    for(j=0;j<dimensionVector;j++){ //0,1,2,3,4,5
-       if(primerJugador==dimensionVector-1){
-           jugadoresOrdenados[contador] = jugadores[0].id;
-       }else{
-           jugadoresOrdenados[j]=jugadores[primerJugador+1].id;
-           contador++;
-       }
-    }*/
+    return jugadoresOrdenados;
 }
 
 void imprimirVector(Persona a[] , int tam){
     int i;
     for(i=0;i<tam;i++){
-        printf("Player %d :%s - Armadas=%d " , a[i].id, a[i].nombre, a[i].numArmadas);
+        printf("Player %d: %s----\tArmadas=%d" , a[i].id, a[i].nombre, a[i].numArmadas);
         printf("\n");
     }
 }
@@ -150,45 +191,21 @@ Carta* crearCarta(Lista *lista){
     return insertarCarta(lista,infoCarta);
 }
 
+void imprimirCarta(Informacion carta){
+    printf("\nTerritory: %d Owner: %d Team: %d Armies: %d" ,carta.numeroCarta , carta.propietario.id, carta.equipo,
+           carta.numArmadas);
+}
+
 Informacion inicializarCarta(){
     Informacion iCarta;
 
     //Let's initialize all the variables of iCarta
-    iCarta.persona.id=0;
-    //modificaPersona(iCarta);
-    strcpy(iCarta.persona.nombre , escribirNombre());
+    iCarta.propietario.id=0;
     iCarta.equipo=0;
     iCarta.numArmadas=0;
     iCarta.numeroCarta=0;
 
     return iCarta;
-}
-
-char* escribirNombre(){
-
-    char nombre[DIM_NAME];
-    int i=1, jugadores;
-    jugadores=cantidadJugadores();
-
-    //Creating names in an list for using it later
-    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
-            "Andres",
-            "Alvaro",
-            "Ivan",
-            "Adrian",
-            "Fabio",
-            "Stefano"
-    };
-
-    //Assigning a name to the person in the card
-    strcpy(nombre , listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]);
-
-    return nombre;
-}
-
-int aumentador(){
-    int a=0;
-    return a++;
 }
 
 /**
@@ -239,7 +256,7 @@ void vaciarListaCartas(Lista *lista){
     Carta *aux=NULL;
     Carta *it= lista->first;
 
-    //Se la lista è già vuota non svuotarla
+    //Checking if the list is empty
     if(listaVacia(lista)==true){
         printf("\nThe list is empty");
         return;
@@ -260,20 +277,73 @@ void vaciarCarta(Carta *carta){
     carta=NULL;
 }
 
-void imprimirCarta(Informacion carta){
-    printf("\nTerritory: %d Owner: %d Team: %d Amount Army: %d" ,carta.numeroCarta , carta.persona.id, carta.equipo,
-            carta.numArmadas);
+void imprimirInicio(Persona* listaJugadores ,int nJugadores){
+    int i;
+
+    printf("\n");
+    printf("Number of Players:%d ",nJugadores);
+    printf("\n");
+
+    for(i=0;i<nJugadores;i++){
+        printf("Name of Player: %s\t" , listaJugadores[i].nombre);
+        printf(" Army Color: %s\t" , imprimirColor(listaJugadores[i]));
+        printf(" Number of Cards: \t");
+        printf(" List of Cards: ");
+        printf("\n");
+        /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13*/
+    }
+
 }
 
-void imprimirInicio(Informacion inicio){
-    printf("Number of Players: ");
-    printf("\nPlayers Playing: ");
-    printf("\n");
-    printf("Name of Player: ");
-    printf("\tArmy Color: ");
-    printf("\tNumber of Cards: ");
-    printf("\tList of Cards: ");
-    /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13*/
+char* escribirNombre(){
+
+    char nombre[DIM_NAME];
+    int i=1, jugadores;
+    jugadores=cantidadJugadores();
+
+    //Creating names in an list for using it later
+    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
+            "Andres",
+            "Alvaro",
+            "Ivan",
+            "Adrian",
+            "Fabio",
+            "Stefano"
+    };
+
+    //Assigning a name to the person in the card
+    strcpy(nombre , listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]);
+
+    return nombre;
+}
+
+char* imprimirColor(Persona jugador){
+    char* color="";
+
+    if(jugador.color==0){
+        strcpy(color,"ROJO");
+    }
+    if(jugador.color==1){
+        strcpy(color,"VERDE");
+    }
+    if(jugador.color==2){
+        strcpy(color,"AMARILLO");
+    }
+    if(jugador.color==3){
+        strcpy(color,"VIOLETA");
+    }
+    if(jugador.color==4){
+        strcpy(color,"AZUL");
+    }
+    if(jugador.color==5){
+        strcpy(color,"NEGRO");
+    }
+
+
+
+
+
+    return color;
 }
 
 int contadorCartas(Lista * lista){
