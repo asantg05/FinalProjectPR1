@@ -14,7 +14,7 @@
 #define N_MAX_CAFES 12
 #define N_MAX_BIRRAS 8
 #define N_MAX_VINOS 6
-#define DIM_NAME 24
+#define DIM_NAME 25
 #define DIM_3_PLAYERS 35
 #define DIM_4_PLAYERS 30
 #define DIM_5_PLAYERS 25
@@ -76,11 +76,13 @@ void repartirEquipo(Lista *lista);
 int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
+int contarCeros(Persona* jugadores, int dimensionVector);
 int contadorCartas(Lista * lista);
-char* escribirNombre();
+char* escribirNombre(int nJugadores);
 char* imprimirColor(Persona jugador);
+_Bool esIgual(int* randomVector, int aleatorio, int nJugadores);
 
-void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
+        void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
 
 _Bool listaVacia(Lista *lista);
 void generateSeed();

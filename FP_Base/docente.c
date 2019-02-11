@@ -138,9 +138,13 @@ Persona* creacionPersonas(int dimensionVector){
     jugadoresInicio[dimensionVector];
     jugadoresOrdenados[dimensionVector];
 
-    for(i=0;i<dimensionVector;i++){ //Assigning id to Players
+    for(i=0;i<dimensionVector;i++){ //Assigning id to Players since 0
         jugadoresInicio[i].id=id;
         id++;
+    }
+
+    for(i=0;i<dimensionVector;i++){ //Assigning id to Players since 0
+        jugadoresOrdenados[i].id=0;
     }
 
     //Let's see who goes first
@@ -148,14 +152,21 @@ Persona* creacionPersonas(int dimensionVector){
 
     jugadoresOrdenados[0].id=primerJugador;   //2
 
-    for(j=1;j<dimensionVector;j++){
+    for(j=0;j<dimensionVector;j++){
         jugadoresOrdenados[j].id=(jugadoresOrdenados[0].id+j)%(dimensionVector); //0,1,2,3,4,5 --> jugadoresOrdenados: 2,3,4,5,0,1
     }
+
+    /*for(i=0;i<dimensionVector;i++){
+        if(contarCeros(jugadoresOrdenados,dimensionVector)<1){
+            jugadoresOrdenados[i].id--;
+        }
+    }*/
 
     //We assign the initial number of armies to the players
     for(i=0;i<dimensionVector;i++){
         jugadoresOrdenados[i].numArmadas=numeroArmadasIniciales(dimensionVector);
     }
+
 
     //We initialize the number of cards the player have
     for(i=0;i<dimensionVector;i++){
@@ -163,12 +174,11 @@ Persona* creacionPersonas(int dimensionVector){
     }
 
     //We assign random names to the players
-    strcpy(jugadoresOrdenados[0].nombre , "Andres");
-    strcpy(jugadoresOrdenados[1].nombre , "Adrian");
-    strcpy(jugadoresOrdenados[2].nombre , "Ivan");
-    strcpy(jugadoresOrdenados[3].nombre , "Alvaro");
-    strcpy(jugadoresOrdenados[4].nombre , "Stefano");
-    strcpy(jugadoresOrdenados[5].nombre , "Fabio");
+    //strcpy(jugadoresOrdenados[5].nombre , "Fabio");
+
+    for(i=0;i<dimensionVector;i++){
+        strcpy(jugadoresOrdenados[i].nombre , escribirNombre(dimensionVector));
+    }
 
     //We assign random colors to the players: ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO
     jugadoresOrdenados[0].color=ROJO;
@@ -178,10 +188,56 @@ Persona* creacionPersonas(int dimensionVector){
     jugadoresOrdenados[4].color=AZUL;
     jugadoresOrdenados[5].color=NEGRO;
 
-    printf("Vector Ordenado: \n");
+    printf("\n");
     imprimirVector(jugadoresOrdenados,dimensionVector);
 
     return jugadoresOrdenados;
+}
+
+char* escribirNombre(int nJugadores){
+
+    char nombre[DIM_NAME];
+    int i=0, random=0,j=0;
+
+    int *vectorAleatorios;
+    vectorAleatorios=malloc(sizeof(int)*nJugadores);
+    vectorAleatorios[nJugadores];
+
+    random = generateRandom(0,N_MAX_JUGADORES-1);
+
+    //Creating names in an list for using it later
+    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
+            "Andres",
+            "Alvaro",
+            "Ivan",
+            "Adrian",
+            "Fabio",
+            "Stefano"
+    };
+
+    while(i<nJugadores){    //4
+        if(vectorAleatorios[i]!=random){
+            vectorAleatorios[i]=random;
+            i++;
+        }
+    }//4,1,2,3
+
+    //Assigning a name to the person in the card
+    strcpy(nombre , listaNombres[vectorAleatorios[j]]);
+
+    return nombre;
+}
+
+int contarCeros(Persona* jugadores, int dimensionVector){
+    int numeroDeCeros=0, i;
+
+    for(i=0;i<dimensionVector;i++){
+        if(jugadores[i].id==0){
+            numeroDeCeros++;
+        }
+    }
+
+    return numeroDeCeros;
 }
 
 void imprimirVector(Persona a[] , int tam){
@@ -325,27 +381,7 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
 
 }
 
-char* escribirNombre(){
 
-    char nombre[DIM_NAME];
-    int i=1, jugadores;
-    jugadores=cantidadJugadores();
-
-    //Creating names in an list for using it later
-    char listaNombres[N_MAX_JUGADORES][DIM_NAME]={
-            "Andres",
-            "Alvaro",
-            "Ivan",
-            "Adrian",
-            "Fabio",
-            "Stefano"
-    };
-
-    //Assigning a name to the person in the card
-    strcpy(nombre , listaNombres[generateRandom(0,N_MAX_JUGADORES-1)]);
-
-    return nombre;
-}
 
 char* imprimirColor(Persona jugador){
     char* color="";
@@ -414,7 +450,7 @@ int empiezaPrimero(int nJugadores){
  * @return random number of players (int)
  */
 int cantidadJugadores(){
-    return generateRandom(3,6);
+    return generateRandom(N_MIN_JUGADORES,N_MAX_JUGADORES);
 }
 
 _Bool listaVacia(Lista *lista){
