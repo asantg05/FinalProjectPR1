@@ -39,8 +39,10 @@ const _Bool t[N_TERRITORI][N_TERRITORI] = {
 };
 
 void risika(){
+
     Persona *jugadores;
     int nJugadores;
+    int n0, a=0;
 
     nJugadores= cantidadJugadores();
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
@@ -53,12 +55,8 @@ void risika(){
     repartirTerritorio(&mazo);
     repartirEquipo(&mazo);
 
-    //imprimirListaCartas(&mazo);
-    //imprimirInicio(jugadores,nJugadores);
-}
-
-int getNumeroJugadores(int a){
-    return a;
+    imprimirListaCartas(&mazo);
+    imprimirInicio(&mazo,jugadores,nJugadores);
 }
 
 void repartirEquipo(Lista *lista){
@@ -100,6 +98,34 @@ void repartirCartas(Lista *lista , Persona* jugadores, int nJugadores){
     }
 }
 
+void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugadores){
+    Carta * it = lista->first;
+
+    while(it != NULL){
+
+        if(it->inf.propietario.id==0){
+            jugadores[0].numCartas++;
+        }
+        if(it->inf.propietario.id==1){
+            jugadores[1].numCartas++;
+        }
+        if(it->inf.propietario.id==2){
+            jugadores[2].numCartas++;
+        }
+        if(it->inf.propietario.id==3){
+            jugadores[3].numCartas++;
+        }
+        if(it->inf.propietario.id==4){
+            jugadores[4].numCartas++;
+        }
+        if(it->inf.propietario.id==5){
+            jugadores[5].numCartas++;
+        }
+
+        it=it->next;
+    }
+}
+
 Persona* creacionPersonas(int dimensionVector){
     int id=0, i=0, primerJugador, j=0;
 
@@ -111,7 +137,6 @@ Persona* creacionPersonas(int dimensionVector){
 
     jugadoresInicio[dimensionVector];
     jugadoresOrdenados[dimensionVector];
-    //Persona jugadoresInicio[dimensionVector] , jugadoresOrdenados[dimensionVector];
 
     for(i=0;i<dimensionVector;i++){ //Assigning id to Players
         jugadoresInicio[i].id=id;
@@ -130,6 +155,11 @@ Persona* creacionPersonas(int dimensionVector){
     //We assign the initial number of armies to the players
     for(i=0;i<dimensionVector;i++){
         jugadoresOrdenados[i].numArmadas=numeroArmadasIniciales(dimensionVector);
+    }
+
+    //We initialize the number of cards the player have
+    for(i=0;i<dimensionVector;i++){
+        jugadoresOrdenados[i].numCartas=0;
     }
 
     //We assign random names to the players
@@ -277,17 +307,17 @@ void vaciarCarta(Carta *carta){
     carta=NULL;
 }
 
-void imprimirInicio(Persona* listaJugadores ,int nJugadores){
+void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
     int i;
+    actualizarNumeroCartasPlayerN(lista,listaJugadores,nJugadores);    //this function, let us know how many cards the players have
 
-    printf("\n");
-    printf("Number of Players:%d ",nJugadores);
+    printf("\nNumber of Players:%d ",nJugadores);
     printf("\n");
 
     for(i=0;i<nJugadores;i++){
         printf("Name of Player: %s\t" , listaJugadores[i].nombre);
         printf(" Army Color: %s\t" , imprimirColor(listaJugadores[i]));
-        printf(" Number of Cards: \t");
+        printf(" Number of Cards:%d \t" , listaJugadores[i].numCartas);
         printf(" List of Cards: ");
         printf("\n");
         /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13*/
@@ -338,10 +368,6 @@ char* imprimirColor(Persona jugador){
     if(jugador.color==5){
         strcpy(color,"NEGRO");
     }
-
-
-
-
 
     return color;
 }

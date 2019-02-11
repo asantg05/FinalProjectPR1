@@ -80,6 +80,8 @@ int contadorCartas(Lista * lista);
 char* escribirNombre();
 char* imprimirColor(Persona jugador);
 
+void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
+
 _Bool listaVacia(Lista *lista);
 void generateSeed();
 int generateRandom(int min, int max);
@@ -87,7 +89,7 @@ _Bool isAdjacent(int idFirst, int idSecond);
 
 
 //-------PRINTS----------
-void imprimirInicio(Persona* listaJugadores , int nJugadores);
+void imprimirInicio(Lista* lista, Persona* listaJugadores , int nJugadores);
 void imprimirListaCartas(Lista * lista);
 void imprimirCarta(Informacion carta);
 void imprimirVector(Persona a[], int tam);
