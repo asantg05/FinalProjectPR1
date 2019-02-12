@@ -138,16 +138,17 @@ void addCartas(Lista *lista, Persona *jugadores, int nJugadores){
 
         for(n=0;n<nJugadores;n++){  //It let us to check all the ID's
             if(it->inf.propietario.id==n){  //The card that is with id=0,1,2,3,4,5
-                for(i=0;i<nJugadores;i++){ //It travels inside the vector
+                for(i=0;i<nJugadores;i++){ //It travels inside the vector of Jugadores
                     if(jugadores[i].id==n){ //The player that is with with id=0,1,2,3,4,5
-                        /*for(j=0;j<10;j++){ //Let's add numbers to the list of cards
-                            jugadores[i].listaCartas[j]=it->inf.numeroCarta;
-                        }*/
+                        //Let's add numbers to the list of cards
+                        jugadores[i].listaCartas[j]=it->inf.numeroCarta;
+
                     }
                 }
             }
         }
 
+        j++;
         it=it->next;
     }
 }
@@ -264,11 +265,11 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
     printf("\n");
 
     for(i=0;i<nJugadores;i++){
-        printf("Name of Player: %s\t" , listaJugadores[i].nombre);
+        printf("Name of Player (ID=%d): %s\t" , listaJugadores[i].id ,listaJugadores[i].nombre);
         printf(" Army Color: %s\t" , imprimirColor(listaJugadores[i]));
         printf(" Number of Cards:%d \t" , listaJugadores[i].numCartas);
         printf(" List of Cards: ");
-        for(j=0;j<nJugadores;j++){
+        for(j=0;j<N_MAX_CARTAS;j++){
             printf("%d," , listaJugadores[i].listaCartas[j]);
         }
         printf("\n");
