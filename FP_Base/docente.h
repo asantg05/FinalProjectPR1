@@ -72,15 +72,15 @@ void vaciarCarta(Carta *carta);
 void repartirTerritorio(Lista *lista);
 void repartirCartas(Lista *lista , Persona* jugadores,int nJugadores);
 void repartirEquipo(Lista *lista);
+void addCartas(Lista *lista, Persona *jugadores, int nJugadores);
 
 int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
-int contarCeros(Persona* jugadores, int dimensionVector);
 int contadorCartas(Lista * lista);
 char* escribirNombre(int nJugadores);
 char* imprimirColor(Persona jugador);
-_Bool esIgual(int* randomVector, int aleatorio, int nJugadores);
+void crearArrayAleatorios(int *vectorAleatorios, int nJugadores, int num);
 
         void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
 
