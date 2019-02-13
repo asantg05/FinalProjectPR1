@@ -1,48 +1,11 @@
 #include "docente.h"
 
 
-/**
- * This function checks if two territories are adjacent (reachable from each other).
- * @param idFirst  the id of the first territory
- * @param idSecond the id of the second territory
- * @return it returns true if they are adjacent, false otherwise
- */
-
-//This global constant variable contains the adjacencies of the territories (true if a territory is adjacent with another).
-const _Bool t[N_TERRITORI][N_TERRITORI] = {
-        { false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false,  true, false, false, false, false, false, false, false, false},
-        { false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        {  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false,  true, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false},
-        { false, false, false,  true, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false,  true, false, false, false,  true, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false,  true,  true, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        {  true, false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false,  true, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false,  true, false, false, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false,  true, false, false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false},
-        {  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false,  true, false, false, false, false},
-        { false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true,  true,  true, false, false, false},
-        { false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false, false,  true, false,  true},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true},
-        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false}
-};
-
 void risika(){
 
     Persona *jugadores;
+    Territorio *territorios;
     int nJugadores;
-    int n0, a=0;
 
     nJugadores= cantidadJugadores();
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
@@ -57,8 +20,48 @@ void risika(){
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);
     addCartas(&mazo, jugadores, nJugadores);
 
-    imprimirListaCartas(&mazo);
+    //Let's create the list of Territories
+    territorios=listaTerritorios();
+    //actualizarTerritorios(territorios,jugadores,nJugadores);
+
+    //imprimirListaCartas(&mazo);
     imprimirInicio(&mazo,jugadores,nJugadores);
+    //imprimirTerritorios(territorios);
+}
+
+void actualizarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores){
+    int n=0;
+
+    /*while(n<26){
+        if(territorios[n].id==jugadores[n].listaCartas[n]){ //Controlar n en el vector de Jugadores, poner otro indice
+            territorios[n].id=jugadores[n].listaCartas[n];
+            n++;
+        }
+    }*/
+}
+
+Territorio* listaTerritorios(){
+    Territorio* territorios;
+    int i=0;
+
+    territorios=malloc(sizeof(Territorio)*N_MAX_TERRITORIOS);
+    territorios[N_MAX_TERRITORIOS];
+
+    for(i=0;i<N_MAX_TERRITORIOS;i++){   //We assign an ID
+        territorios[i].id=i;
+        territorios[i].numArmadas=0;
+        territorios[i].prop=0;
+        strcpy(territorios[i].nombre,"");
+    }
+
+    return territorios;
+}
+
+void imprimirTerritorios(Territorio a[]){
+    int i;
+    for(i=0;i<N_MAX_TERRITORIOS;i++){
+        printf("\nID:%d\tArmies:%d\tOwner[#%d]:%s", a[i].id,a[i].numArmadas,a[i].prop,a[i].nombre);
+    }
 }
 
 Persona* creacionPersonas(int dimensionVector){
@@ -91,14 +94,9 @@ Persona* creacionPersonas(int dimensionVector){
         jugadoresOrdenados[j].id=(jugadoresOrdenados[0].id+j)%(dimensionVector); //0,1,2,3,4,5 --> jugadoresOrdenados: 2,3,4,5,0,1
     }
 
-    //We assign the initial number of ARMIES to the players
     for(i=0;i<dimensionVector;i++){
-        jugadoresOrdenados[i].numArmadas=numeroArmadasIniciales(dimensionVector);
-    }
-
-    //We initialize the NUMBER of CARDS the player have
-    for(i=0;i<dimensionVector;i++){
-        jugadoresOrdenados[i].numCartas=0;
+        jugadoresOrdenados[i].numArmadas=numeroArmadasIniciales(dimensionVector);//We assign the initial number of ARMIES to the players
+        jugadoresOrdenados[i].numCartas=0;     //We initialize the NUMBER of CARDS the player have
     }
 
     //We assign random NAMES to the players
@@ -123,9 +121,6 @@ Persona* creacionPersonas(int dimensionVector){
             jugadoresOrdenados[i].listaCartas[j]=0;
         }
     }
-
-    printf("\n");
-    imprimirVector(jugadoresOrdenados,dimensionVector);
 
     return jugadoresOrdenados;
 }
@@ -261,7 +256,6 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
 
     printf("\n----------");
     printf("\nNumber of Players:%d ",nJugadores);
-    printf("\nNumber of Cards:%d ",numeroCartas);
     printf("\n");
 
     for(i=0;i<nJugadores;i++){
@@ -308,8 +302,7 @@ Carta* crearCarta(Lista *lista){
 }
 
 void imprimirCarta(Informacion carta){
-    printf("\nTerritory: %d Owner: %d Team: %d Armies: %d" ,carta.numeroCarta , carta.propietario.id, carta.equipo,
-           carta.numArmadas);
+    printf("\nTerritory: %d Owner: %d Team: %d" ,carta.numeroCarta , carta.propietario.id, carta.equipo);
 }
 
 Informacion inicializarCarta(){
@@ -318,7 +311,6 @@ Informacion inicializarCarta(){
     //Let's initialize all the variables of iCarta
     iCarta.propietario.id=0;
     iCarta.equipo=0;
-    iCarta.numArmadas=0;
     iCarta.numeroCarta=0;
 
     return iCarta;
@@ -470,6 +462,43 @@ _Bool listaVacia(Lista *lista){
     else
         return false;
 }
+
+/**
+ * This function checks if two territories are adjacent (reachable from each other).
+ * @param idFirst  the id of the first territory
+ * @param idSecond the id of the second territory
+ * @return it returns true if they are adjacent, false otherwise
+ */
+
+//This global constant variable contains the adjacencies of the territories (true if a territory is adjacent with another).
+const _Bool t[N_TERRITORI][N_TERRITORI] = {
+        { false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false,  true, false, false, false, false, false, false, false, false},
+        { false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        {  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false,  true, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false},
+        { false, false, false,  true, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false,  true, false, false, false,  true, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false,  true,  true, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+        {  true, false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false,  true, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false,  true, false, false, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false,  true, false, false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false},
+        {  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false,  true, false, false, false, false},
+        { false, false, false,  true, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true,  true,  true, false, false, false},
+        { false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true,  true, false, false, false, false, false, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false, false, false,  true, false,  true},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true},
+        { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,  true, false,  true, false}
+};
 
 _Bool isAdjacent(int idFirst, int idSecond){
     return t[idFirst][idSecond];
