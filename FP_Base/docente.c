@@ -18,13 +18,13 @@ void risika(){
     repartirTerritorio(&mazo);
     repartirEquipo(&mazo);
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);
-    addCartas(&mazo, jugadores, nJugadores);
+    //addCartas(&mazo, jugadores, nJugadores);
 
     //Let's create the list of Territories
     territorios=listaTerritorios();
     //actualizarTerritorios(territorios,jugadores,nJugadores);
 
-    //imprimirListaCartas(&mazo);
+    imprimirListaCartas(&mazo);
     imprimirInicio(&mazo,jugadores,nJugadores);
     //imprimirTerritorios(territorios);
 }
@@ -115,19 +115,13 @@ Persona* creacionPersonas(int dimensionVector){
     jugadoresOrdenados[4].color=AZUL;
     jugadoresOrdenados[5].color=NEGRO;
 
-    //Let's initialize the vectors list of cards
-    for(i=0;i<dimensionVector;i++){
-        for(j=0;j<DIM_NUM_CARTAS;j++){
-            jugadoresOrdenados[i].listaCartas[j]=0;
-        }
-    }
 
     return jugadoresOrdenados;
 }
 
-void addCartas(Lista *lista, Persona *jugadores, int nJugadores){
+/*void addCartas(Lista *lista, Persona *jugadores, int nJugadores){
     Carta* it=lista->first;
-    int i=0,n=0,j=0;
+    int i=0,n=0,j=0,contadorLista=0;
 
     while(it!=NULL){
 
@@ -135,18 +129,19 @@ void addCartas(Lista *lista, Persona *jugadores, int nJugadores){
             if(it->inf.propietario.id==n){  //The card that is with id=0,1,2,3,4,5
                 for(i=0;i<nJugadores;i++){ //It travels inside the vector of Jugadores
                     if(jugadores[i].id==n){ //The player that is with with id=0,1,2,3,4,5
-                        //Let's add numbers to the list of cards
-                        jugadores[i].listaCartas[j]=it->inf.numeroCarta;
-
+                        //Let's add the card found in the only one space
+                        jugadores[i].listaCartas[contadorLista]=it->inf.numeroCarta;
+                        //A card of a player has been found, then we book another space
+                        jugadores[i].listaCartas=realloc(jugadores[i].listaCartas, contadorLista*sizeof(int));
+                        contadorLista++;
                     }
                 }
             }
         }
 
-        j++;
         it=it->next;
     }
-}
+}*/
 
 void repartirEquipo(Lista *lista){
     Carta *it = lista->first;
@@ -181,7 +176,7 @@ void repartirCartas(Lista *lista , Persona* jugadores, int nJugadores){
     int k=0;
 
     while(it!=NULL){
-        it->inf.propietario.id=jugadores[k%nJugadores].id;
+        it->inf.propietario=jugadores[k%nJugadores].id;
         it=it->next;
         k++;
     }
@@ -194,7 +189,7 @@ void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugado
     while(it != NULL){
 
         for(n=0;n<nJugadores;n++){
-            if(it->inf.propietario.id==n){
+            if(it->inf.propietario==n){
                 for(i=0;i<nJugadores;i++){
                     if(jugadores[i].id==n){
                         jugadores[i].numCartas++;
@@ -207,6 +202,7 @@ void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugado
     }
 }
 
+//escribirNombre( )
 /*
 char* escribirNombre(int nJugadores){
 
@@ -263,9 +259,6 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
         printf(" Army Color: %s\t" , imprimirColor(listaJugadores[i]));
         printf(" Number of Cards:%d \t" , listaJugadores[i].numCartas);
         printf(" List of Cards: ");
-        for(j=0;j<N_MAX_CARTAS;j++){
-            printf("%d," , listaJugadores[i].listaCartas[j]);
-        }
         printf("\n");
         /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13,5,6,4*/
     }
@@ -302,14 +295,14 @@ Carta* crearCarta(Lista *lista){
 }
 
 void imprimirCarta(Informacion carta){
-    printf("\nTerritory: %d Owner: %d Team: %d" ,carta.numeroCarta , carta.propietario.id, carta.equipo);
+    printf("\nTerritory: %d Owner: %d Team: %d" ,carta.numeroCarta , carta.propietario, carta.equipo);
 }
 
 Informacion inicializarCarta(){
     Informacion iCarta;
 
     //Let's initialize all the variables of iCarta
-    iCarta.propietario.id=0;
+    iCarta.propietario=0;
     iCarta.equipo=0;
     iCarta.numeroCarta=0;
 

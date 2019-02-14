@@ -25,27 +25,10 @@
 typedef enum {CAFE,BIRRA,VINO}Equipo; //0,1,2
 typedef enum {ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO}Color; //0,1,2,3,4,5
 
-typedef struct{
-    int id;
-    int prop;
-    int numArmadas;
-    char nombre[DIM_NAME+1];
-}Territorio;
-
-typedef struct{
-    int id;
-    int numCartas;
-    int numArmadas;
-    //int *listaCartas;
-    int listaCartas[DIM_NUM_CARTAS];
-    char nombre[DIM_NAME+1];
-    Color color;
-}Persona;
-
 //Information that is gonna be saved in the List
 typedef struct {
     int numeroCarta;    //Territory
-    Persona propietario; //--> ID
+    int propietario; //--> ID
     Equipo equipo;
 } Informacion;
 
@@ -64,35 +47,57 @@ typedef struct {
     Carta* last;
 } Lista;
 
+typedef struct{
+    int id;
+    int numCartas;
+    int numArmadas;
+    char nombre[DIM_NAME+1];
+    Color color;
+    Lista listaCartas;
+}Persona;
+
+typedef struct{
+    int id;
+    int prop;
+    int numArmadas;
+    char nombre[DIM_NAME+1];
+}Territorio;
+
 //----FUNCTIONS----
 
 void risika();
+
+//List Methods
 Carta* crearCarta(Lista *lista);
 Carta* insertarCarta(Lista * lista, Informacion infoCarta);
 Carta* colocarCarta();
 Informacion inicializarCarta();
 void inicializaLista(Lista *lista);
 void crearTodasLasCartas(Lista *lista);
-Persona* creacionPersonas(int dimensionVector);
 void vaciarListaCartas(Lista *lista);
 void vaciarCarta(Carta *carta);
-Territorio* listaTerritorios();
-void actualizarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores);
-
+int contadorCartas(Lista * lista);
 void repartirTerritorio(Lista *lista);
 void repartirCartas(Lista *lista , Persona* jugadores,int nJugadores);
 void repartirEquipo(Lista *lista);
-void addCartas(Lista *lista, Persona *jugadores, int nJugadores);
+_Bool listaVacia(Lista *lista);
+void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
+//void addCartasBaraja(Lista *lista, Lista *baraja,Persona *jugadores, int nJugadores);
 
+//Persona Methods
+Persona* creacionPersonas(int dimensionVector);
+
+//Territorio Methods
+Territorio* listaTerritorios();
+void actualizarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores);
+
+//Other methods
 int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
-int contadorCartas(Lista * lista);
 char* escribirNombre(int nJugadores);
 void crearArrayAleatorios(int *vectorAleatorios, int nJugadores, int num);
-void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
 
-_Bool listaVacia(Lista *lista);
 void generateSeed();
 int generateRandom(int min, int max);
 _Bool isAdjacent(int idFirst, int idSecond);
@@ -100,6 +105,7 @@ _Bool isAdjacent(int idFirst, int idSecond);
 //-------PRINTS----------
 void imprimirInicio(Lista* lista, Persona* listaJugadores , int nJugadores);
 void imprimirListaCartas(Lista * lista);
+void imprimirBarajas(Lista *baraja, int nJugadores);
 void imprimirCarta(Informacion carta);
 void imprimirVector(Persona a[], int tam);
 void imprimirTerritorios(Territorio a[]);
