@@ -96,19 +96,61 @@ CMakeFiles\FP_Base.dir\docente.c.s: cmake_force
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\FP_Base.dir\docente.c.s /c C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\docente.c
 <<
 
+CMakeFiles\FP_Base.dir\cartas.c.obj: CMakeFiles\FP_Base.dir\flags.make
+CMakeFiles\FP_Base.dir\cartas.c.obj: ..\cartas.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/FP_Base.dir/cartas.c.obj"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\FP_Base.dir\cartas.c.obj /FdCMakeFiles\FP_Base.dir\ /FS -c C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cartas.c
+<<
+
+CMakeFiles\FP_Base.dir\cartas.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/FP_Base.dir/cartas.c.i"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe > CMakeFiles\FP_Base.dir\cartas.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cartas.c
+<<
+
+CMakeFiles\FP_Base.dir\cartas.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/FP_Base.dir/cartas.c.s"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\FP_Base.dir\cartas.c.s /c C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cartas.c
+<<
+
+CMakeFiles\FP_Base.dir\jugadores.c.obj: CMakeFiles\FP_Base.dir\flags.make
+CMakeFiles\FP_Base.dir\jugadores.c.obj: ..\jugadores.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/FP_Base.dir/jugadores.c.obj"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\FP_Base.dir\jugadores.c.obj /FdCMakeFiles\FP_Base.dir\ /FS -c C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\jugadores.c
+<<
+
+CMakeFiles\FP_Base.dir\jugadores.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/FP_Base.dir/jugadores.c.i"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe > CMakeFiles\FP_Base.dir\jugadores.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\jugadores.c
+<<
+
+CMakeFiles\FP_Base.dir\jugadores.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/FP_Base.dir/jugadores.c.s"
+	C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\FP_Base.dir\jugadores.c.s /c C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\jugadores.c
+<<
+
 # Object files for target FP_Base
 FP_Base_OBJECTS = \
 "CMakeFiles\FP_Base.dir\main.c.obj" \
-"CMakeFiles\FP_Base.dir\docente.c.obj"
+"CMakeFiles\FP_Base.dir\docente.c.obj" \
+"CMakeFiles\FP_Base.dir\cartas.c.obj" \
+"CMakeFiles\FP_Base.dir\jugadores.c.obj"
 
 # External object files for target FP_Base
 FP_Base_EXTERNAL_OBJECTS =
 
 FP_Base.exe: CMakeFiles\FP_Base.dir\main.c.obj
 FP_Base.exe: CMakeFiles\FP_Base.dir\docente.c.obj
+FP_Base.exe: CMakeFiles\FP_Base.dir\cartas.c.obj
+FP_Base.exe: CMakeFiles\FP_Base.dir\jugadores.c.obj
 FP_Base.exe: CMakeFiles\FP_Base.dir\build.make
 FP_Base.exe: CMakeFiles\FP_Base.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable FP_Base.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable FP_Base.exe"
 	"C:\Program Files\JetBrains\CLion 2018.2.4\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\FP_Base.dir --manifests  -- C:\PROGRA~2\MIB055~1\2017\COMMUN~1\VC\Tools\MSVC\1415~1.267\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\FP_Base.dir\objects1.rsp @<<
  /out:FP_Base.exe /implib:FP_Base.lib /pdb:C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\FP_Base.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

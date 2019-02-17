@@ -69,7 +69,7 @@ void risika();
 
 //List Methods
 Carta* crearCarta(Lista *lista);
-Carta* insertarCarta(Lista * lista, Informacion infoCarta);
+Carta* insertarEnTesta(Lista *lista, Informacion infoCarta);
 Carta* colocarCarta();
 Informacion inicializarCarta();
 void inicializaLista(Lista *lista);
@@ -82,6 +82,9 @@ void repartirCartas(Lista *lista , Persona* jugadores,int nJugadores);
 void repartirEquipo(Lista *lista);
 _Bool listaVacia(Lista *lista);
 void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
+void inicializarBarajas(Persona* jugadores, int nJugadores);
+void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores);
+void imprimirIds(Lista* baraja, int nJugadores);
 //void addCartasBaraja(Lista *lista, Lista *baraja,Persona *jugadores, int nJugadores);
 
 //Persona Methods

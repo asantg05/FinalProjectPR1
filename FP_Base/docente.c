@@ -5,26 +5,35 @@ void risika(){
 
     Persona *jugadores;
     Territorio *territorios;
-    int nJugadores;
+    int nJugadores, i;
 
-    nJugadores= cantidadJugadores();
+    nJugadores= cantidadJugadores();//3,4,5,6
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
 
     Lista mazo; //In this list, we will do all the changes
+    Lista baraja; //This will be the list of each player
+
     inicializaLista(&mazo);
+    inicializarBarajas(jugadores,nJugadores); //Initializing list of each player
+
     crearTodasLasCartas(&mazo); //Let's create the 26 cards
 
     repartirCartas(&mazo , jugadores, nJugadores);
     repartirTerritorio(&mazo);
     repartirEquipo(&mazo);
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);
-    //addCartas(&mazo, jugadores, nJugadores);
+
+    insertarEnBaraja(&mazo,jugadores,nJugadores);
 
     //Let's create the list of Territories
     territorios=listaTerritorios();
     //actualizarTerritorios(territorios,jugadores,nJugadores);
 
-    imprimirListaCartas(&mazo);
+    //imprimirListaCartas(&mazo);
+    /*for(i=0;i<nJugadores;i++){
+        printf("\n-----Jugador %d------" , i);
+        imprimirListaCartas(&jugadores[i].listaCartas);
+    }*/
     imprimirInicio(&mazo,jugadores,nJugadores);
     //imprimirTerritorios(territorios);
 }
@@ -247,7 +256,7 @@ void imprimirVector(Persona a[] , int tam){
 }
 
 void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
-    int i, numeroCartas=0, j=0;
+    int i, numeroCartas=0, j=0, k=0;
     numeroCartas=contadorCartas(lista);
 
     printf("\n----------");
@@ -259,14 +268,59 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
         printf(" Army Color: %s\t" , imprimirColor(listaJugadores[i]));
         printf(" Number of Cards:%d \t" , listaJugadores[i].numCartas);
         printf(" List of Cards: ");
+        imprimirIds(&listaJugadores[i].listaCartas, nJugadores);
+
         printf("\n");
         /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13,5,6,4*/
     }
 
 }
 
+void imprimirIds(Lista* baraja, int nJugadores){
+    int i=0;
+
+    Carta* it= NULL;
+    it=baraja->first;
+
+    while(it!=NULL){
+            if(it!=NULL){
+                printf("%d,", it->inf.numeroCarta);
+                it=it->next;
+            }
+    }
+}
+
+void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores){
+    int i=0;
+
+    Carta* it= NULL;
+    it=mazo->first;
+
+    while(it!=NULL){
+        for(i=0;i<nJugadores;i++){
+            if(it!=NULL){
+                insertarEnTesta(&listaJugadores[i].listaCartas,it->inf);
+                it=it->next;
+
+            }
+        }
+
+    }
+}
+
+
+
 void inicializaLista(Lista *lista){
     lista->first=NULL;
+}
+
+void inicializarBarajas(Persona* jugadores, int nJugadores){
+    int i=0;
+
+    for(i=0;i<nJugadores;i++){
+        jugadores[i].listaCartas.first=NULL;
+    }
+
 }
 
 /**
@@ -291,7 +345,7 @@ Carta* crearCarta(Lista *lista){
     Informacion infoCarta;
     infoCarta = inicializarCarta();
 
-    return insertarCarta(lista,infoCarta);
+    return insertarEnTesta(lista, infoCarta);
 }
 
 void imprimirCarta(Informacion carta){
@@ -315,7 +369,7 @@ Informacion inicializarCarta(){
  * @param Information that is gonna be saved
  * @return The new card of the list
  */
-Carta* insertarCarta(Lista * lista, Informacion infoCarta){
+Carta* insertarEnTesta(Lista *lista, Informacion infoCarta){
 
     Carta* cartaNueva= NULL;
     cartaNueva = colocarCarta();

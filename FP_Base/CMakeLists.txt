@@ -3,4 +3,4 @@ project(FP_Base C)
 
 set(CMAKE_C_STANDARD 90)
 
-add_executable(FP_Base main.c docente.c docente.h)
+add_executable(FP_Base main.c docente.c docente.h cartas.c cartas.h jugadores.c jugadores.h)

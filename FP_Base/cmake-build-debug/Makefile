@@ -124,6 +124,33 @@ FP_Base\fast:
 	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\build
 .PHONY : FP_Base\fast
 
+cartas.obj: cartas.c.obj
+
+.PHONY : cartas.obj
+
+# target to build an object file
+cartas.c.obj:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\cartas.c.obj
+.PHONY : cartas.c.obj
+
+cartas.i: cartas.c.i
+
+.PHONY : cartas.i
+
+# target to preprocess a source file
+cartas.c.i:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\cartas.c.i
+.PHONY : cartas.c.i
+
+cartas.s: cartas.c.s
+
+.PHONY : cartas.s
+
+# target to generate assembly for a file
+cartas.c.s:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\cartas.c.s
+.PHONY : cartas.c.s
+
 docente.obj: docente.c.obj
 
 .PHONY : docente.obj
@@ -150,6 +177,33 @@ docente.s: docente.c.s
 docente.c.s:
 	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\docente.c.s
 .PHONY : docente.c.s
+
+jugadores.obj: jugadores.c.obj
+
+.PHONY : jugadores.obj
+
+# target to build an object file
+jugadores.c.obj:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\jugadores.c.obj
+.PHONY : jugadores.c.obj
+
+jugadores.i: jugadores.c.i
+
+.PHONY : jugadores.i
+
+# target to preprocess a source file
+jugadores.c.i:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\jugadores.c.i
+.PHONY : jugadores.c.i
+
+jugadores.s: jugadores.c.s
+
+.PHONY : jugadores.s
+
+# target to generate assembly for a file
+jugadores.c.s:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\FP_Base.dir\jugadores.c.s
+.PHONY : jugadores.c.s
 
 main.obj: main.c.obj
 
@@ -187,9 +241,15 @@ help:
 	@echo ... FP_Base
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... cartas.obj
+	@echo ... cartas.i
+	@echo ... cartas.s
 	@echo ... docente.obj
 	@echo ... docente.i
 	@echo ... docente.s
+	@echo ... jugadores.obj
+	@echo ... jugadores.i
+	@echo ... jugadores.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
