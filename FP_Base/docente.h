@@ -23,6 +23,7 @@
 #define DIM_NUM_CARTAS 26
 #define DIM_COLOR 10
 
+
 typedef enum {CAFE,BIRRA,VINO}Equipo; //0,1,2
 typedef enum {ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO}Color; //0,1,2,3,4,5
 
@@ -52,9 +53,11 @@ typedef struct{
     int id;
     int numCartas;
     int numArmadas;
+    int numTerritorios;
     char nombre[DIM_NAME+1];
     char color[DIM_COLOR];
     Lista listaCartas;
+    int territorios[56];
 }Persona;
 
 typedef struct{
@@ -72,7 +75,7 @@ void risika();
 Persona* creacionPersonas(int dimensionVector);
 
 //Territorio Methods
-
+void repartirArmadas(Territorio* territorios , Persona* listaJugadores, int nJugadores);
 
 //Other methods
 int numeroArmadasIniciales(int nJugadores);
@@ -80,6 +83,8 @@ int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
 void generateSeed();
 int generateRandom(int min, int max);
+_Bool inputNoValido(int territorioElegido);
+_Bool miTerritorio(int territorioElegido, int idJugador, Territorio* territorios , Persona* listaJugadores, int nJugadores);
 _Bool isAdjacent(int idFirst, int idSecond);
 
 //-------PRINTS----------

@@ -17,32 +17,111 @@ void risika(){
 
     //-----INITIAL PHASE------
     crearTodasLasCartas(&mazo); //Let's create the 26 cards (creacionListas.c)
-    repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
     repartirTerritorio(&mazo);//Charging the territories of each card (creacionListas.c)
-    repartirEquipo(&mazo);//BIRRA, CAFE, VINO (creacionListas.c)
+    //repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
+    //repartirEquipo(&mazo);//BIRRA, CAFE, VINO (creacionListas.c)
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);//Knowledge of the number of cards of each player (creacionListas.c)
     insertarEnBaraja(&mazo,jugadores,nJugadores);//Charging the cards of each player (creacionListas.c)
     territorios=listaTerritorios();//Let's create the list of Territories (territorios.c)
     asignarTerritorios(territorios,jugadores,nJugadores);//Assigning the Territories to players (territorios.c)
+    vaciarBarajas(jugadores,nJugadores);
+    //repartirArmadas(territorios,jugadores,nJugadores);
 
     //imprimirInicio(&mazo,jugadores,nJugadores);
     //-----REINFORCEMENT------
-    vaciarBarajas(jugadores,nJugadores);
+
 
     //IMPRESIONES
-    //imprimirListaCartas(&mazo);
+    imprimirListaCartas(&mazo);
     /*for(i=0;i<nJugadores;i++){
         printf("\n-----Jugador %d------" , jugadores[i].id);
         imprimirListaCartas(&jugadores[i].listaCartas);
     }*/
     imprimirInicio(&mazo,jugadores,nJugadores);
+    //imprimirTerritorios(territorios);
     //imprimirArmadas(jugadores,nJugadores);
-    imprimirTerritorios(territorios);
+
+}
+
+void repartirArmadas(Territorio* territorios , Persona* listaJugadores, int nJugadores){
+    int i=0,j=0, armadasARepartir=3, contadorJugador=0, territorioElegido=0, insertarArmadas=0;
+    int listaTerritorios[N_MAX_TERRITORIOS];
+    _Bool esMiTerritorio=false;
+
+    for(i=0;i<N_MAX_TERRITORIOS;i++){
+        for(j=0;j<nJugadores;j++){
+            if(territorios[i].prop==listaJugadores[j].id){
+                listaJugadores[j].numArmadas--;
+                territorios[i].numArmadas++;
+            }
+        }
+    }
+
+    do{
+        printf("\n------------\n");
+
+        printf("Player[%d]: %s" , listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
+        printf("\nCurrently, you have %d armies, CHOOSE the territory for adding 1-3 armies" , armadasARepartir);
+
+        do{
+            printf("\nYour territories are: ");
+            for(i=0;i<N_MAX_TERRITORIOS;i++){
+                if(territorios[i].prop==listaJugadores[contadorJugador].id){
+                    printf("%d," , territorios[i].id); //0,6,12
+                }
+            }
+
+            printf("\nInsert Territory: ");
+            scanf("%d" , &territorioElegido);
+
+            if(inputNoValido(territorioElegido)){
+                printf("\nWrite a territory of your property!");
+            }else {
+                esMiTerritorio = miTerritorio(territorioElegido, contadorJugador, territorios, listaJugadores, nJugadores);
+                if (esMiTerritorio == false) {
+                    printf("\nWrite a territory of your property!");
+                }
+            }
+
+            armadasARepartir=3;
+
+            while((insertarArmadas<3) && (armadasARepartir<=3)){//1,2,3
+                printf("\nTerritory[%d], insert armies:",territorios[territorioElegido].id); //CHINA=2
+                scanf("%d" , &insertarArmadas); //1,2,3  //4
+
+                territorios[territorioElegido].numArmadas+=insertarArmadas;//1+4
+                armadasARepartir-=insertarArmadas;//3-4 = -1
+                listaJugadores[contadorJugador].numArmadas-=insertarArmadas;//19-4
+            }
+            //armadasARepartir=0,1,2;
+
+        }while(esMiTerritorio==false && !inputNoValido(territorioElegido) && armadasARepartir<4);
+
+        contadorJugador++;
+    }while(contadorJugador<nJugadores);
+
+}
+
+_Bool miTerritorio(int territorioElegido, int idJugador, Territorio* territorios , Persona* listaJugadores, int nJugadores){
+
+    if(territorios[territorioElegido].prop==listaJugadores[idJugador].id){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+_Bool inputNoValido(int territorioElegido){
+
+    if(territorioElegido>N_MAX_TERRITORIOS && territorioElegido<0){
+        return true;
+    }
+    return false;
 }
 
 void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
-    int i, numeroCartas=0, j=0, k=0;
-    numeroCartas=contadorCartas(lista);
+    int i,j=0, k=0;
 
     printf("\n----------");
     printf("\nNumber of Players:%d ",nJugadores);
@@ -63,9 +142,10 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
 void imprimirArmadas(Persona* listaJugadores, int nJugadores){
     int i=0;
 
+    printf("\n");
     for(i=0;i<nJugadores;i++){
-        printf("Jugador [%d] Armadas:%d\n" , listaJugadores[i].id ,listaJugadores[i].numArmadas);
-
+        printf("Jugador[%d] Armadas:%d Territories:%d\n" , listaJugadores[i].id ,listaJugadores[i].numArmadas,
+                listaJugadores[i].numTerritorios);
     }
 
 }
@@ -120,6 +200,11 @@ Persona* creacionPersonas(int dimensionVector){
     strcpy(jugadoresOrdenados[3].color, "VIOLA");
     strcpy(jugadoresOrdenados[4].color, "BLU");
     strcpy(jugadoresOrdenados[5].color, "NERO");
+
+    //Let's initialize the number of territories of each player
+    for(i=0;i<dimensionVector;i++){
+        jugadoresOrdenados[i].numTerritorios=0;
+    }
 
     return jugadoresOrdenados;
 }

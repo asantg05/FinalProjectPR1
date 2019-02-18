@@ -11,6 +11,7 @@ void asignarTerritorios(Territorio *territorios, Persona *jugadores, int nJugado
 
         while(it!=NULL){
             territorios[it->inf.numeroCarta].prop = jugadores[j].id;//Charging the owner of each territory
+            jugadores[j].numTerritorios++;
 
             it=it->next;//iterator++
         }
