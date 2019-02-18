@@ -21,6 +21,7 @@
 #define DIM_5_PLAYERS 25
 #define DIM_6_PLAYERS 20
 #define DIM_NUM_CARTAS 26
+#define DIM_COLOR 10
 
 typedef enum {CAFE,BIRRA,VINO}Equipo; //0,1,2
 typedef enum {ROJO,VERDE,AMARILLO,VIOLETA,AZUL,NEGRO}Color; //0,1,2,3,4,5
@@ -52,7 +53,7 @@ typedef struct{
     int numCartas;
     int numArmadas;
     char nombre[DIM_NAME+1];
-    Color color;
+    char color[DIM_COLOR];
     Lista listaCartas;
 }Persona;
 
@@ -67,40 +68,16 @@ typedef struct{
 
 void risika();
 
-//List Methods
-Carta* crearCarta(Lista *lista);
-Carta* insertarEnTesta(Lista *lista, Informacion infoCarta);
-Carta* colocarCarta();
-Informacion inicializarCarta();
-void inicializaLista(Lista *lista);
-void crearTodasLasCartas(Lista *lista);
-void vaciarListaCartas(Lista *lista);
-void vaciarCarta(Carta *carta);
-int contadorCartas(Lista * lista);
-void repartirTerritorio(Lista *lista);
-void repartirCartas(Lista *lista , Persona* jugadores,int nJugadores);
-void repartirEquipo(Lista *lista);
-_Bool listaVacia(Lista *lista);
-void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadores);
-void inicializarBarajas(Persona* jugadores, int nJugadores);
-void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores);
-void imprimirIds(Lista* baraja, int nJugadores);
-//void addCartasBaraja(Lista *lista, Lista *baraja,Persona *jugadores, int nJugadores);
-
 //Persona Methods
 Persona* creacionPersonas(int dimensionVector);
 
 //Territorio Methods
-Territorio* listaTerritorios();
-void actualizarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores);
+
 
 //Other methods
 int numeroArmadasIniciales(int nJugadores);
 int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
-char* escribirNombre(int nJugadores);
-void crearArrayAleatorios(int *vectorAleatorios, int nJugadores, int num);
-
 void generateSeed();
 int generateRandom(int min, int max);
 _Bool isAdjacent(int idFirst, int idSecond);
@@ -112,7 +89,6 @@ void imprimirBarajas(Lista *baraja, int nJugadores);
 void imprimirCarta(Informacion carta);
 void imprimirVector(Persona a[], int tam);
 void imprimirTerritorios(Territorio a[]);
-char* imprimirColor(Persona jugador);
-
+void imprimirArmadas(Persona* listaJugadores, int nJugadores);
 
 #endif

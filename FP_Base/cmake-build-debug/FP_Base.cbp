@@ -24,7 +24,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
@@ -45,7 +45,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
@@ -80,10 +80,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cartas.c">
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.c">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cartas.h">
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h">
 			<Option target="FP_Base"/>
 		</Unit>
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c">
@@ -92,13 +92,13 @@
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/jugadores.c">
-			<Option target="FP_Base"/>
-		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/jugadores.h">
-			<Option target="FP_Base"/>
-		</Unit>
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c">
+			<Option target="FP_Base"/>
+		</Unit>
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.c">
+			<Option target="FP_Base"/>
+		</Unit>
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h">
 			<Option target="FP_Base"/>
 		</Unit>
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/CMakeLists.txt">

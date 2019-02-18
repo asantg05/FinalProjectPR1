@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cartas.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/cartas.c.obj"
+  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/creacionListas.c.obj"
   "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/docente.c.obj"
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/jugadores.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/jugadores.c.obj"
   "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/main.c.obj"
+  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/territorios.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "MSVC")
 

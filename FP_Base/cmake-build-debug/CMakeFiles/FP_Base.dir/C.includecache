@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h
+docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
+
 C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c
 docente.h
 C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
+creacionListas.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h
+territorios.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h
 
 C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 stdio.h
@@ -21,4 +29,8 @@ time.h
 -
 string.h
 -
+
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h
+docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 
