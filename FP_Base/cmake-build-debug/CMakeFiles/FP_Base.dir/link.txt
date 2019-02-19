@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/FP_Base.dir/main.c.o CMakeFiles/FP_Base.dir/docente.c.o CMakeFiles/FP_Base.dir/creacionListas.c.o CMakeFiles/FP_Base.dir/territorios.c.o  -o FP_Base 

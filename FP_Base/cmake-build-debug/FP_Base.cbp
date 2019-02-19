@@ -4,104 +4,102 @@
 	<Project>
 		<Option title="FP_Base"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="msvc8"/>
+		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug"/>
+				<Option working_dir="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FP_Base">
-				<Option output="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/FP_Base.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 FP_Base"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FP_Base/fast">
-				<Option output="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/FP_Base.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 FP_Base/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug"/>
+				<Option working_dir="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\ANDRES\Documents\2018-19\UNICA\PR1\PROYECTO-FINAL-RISIKA\FP_Base\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FP_Base">
+				<Option output="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/FP_Base" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 FP_Base"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FP_Base/fast">
+				<Option output="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/FP_Base" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 FP_Base/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.c">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.c">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.h">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/docente.c">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/main.c">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.c">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.c">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.h">
 			<Option target="FP_Base"/>
 		</Unit>
-		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/CMakeLists.txt">
+		<Unit filename="/home/sommo-cedro/Scrivania/FP_Base_FU/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/creacionListas.c.obj"
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/docente.c.obj"
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/main.c.obj"
-  "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.c" "C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/cmake-build-debug/CMakeFiles/FP_Base.dir/territorios.c.obj"
+  "/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.c" "/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/CMakeFiles/FP_Base.dir/creacionListas.c.o"
+  "/home/sommo-cedro/Scrivania/FP_Base_FU/docente.c" "/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/CMakeFiles/FP_Base.dir/docente.c.o"
+  "/home/sommo-cedro/Scrivania/FP_Base_FU/main.c" "/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/CMakeFiles/FP_Base.dir/main.c.o"
+  "/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.c" "/home/sommo-cedro/Scrivania/FP_Base_FU/cmake-build-debug/CMakeFiles/FP_Base.dir/territorios.c.o"
   )
-set(CMAKE_C_COMPILER_ID "MSVC")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

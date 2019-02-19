@@ -138,12 +138,22 @@ void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores){
     Carta* it= NULL;
     it=mazo->first;
 
+    /*while(it!=NULL){
+        for(i=0;i<nJugadores;i++){
+            if(it!=NULL){
+                insertarEnTesta(&listaJugadores[i].listaCartas,it->inf);
+                it=it->next;
+            }
+        }
+    }
+     */
+
     while(it!=NULL){
         for(i=0;i<nJugadores;i++){
             if(it!=NULL){
-                if (listaJugadores[i].id == it->inf.numeroCarta) {
-                    insertarEnTesta(&listaJugadores[i].listaCartas, it->inf);
-                    it = it->next;
+                if(listaJugadores[i].id==it->inf.propietario){
+                    insertarEnTesta(&listaJugadores[i].listaCartas,it->inf);
+                    it=it->next;
                 }
             }
         }

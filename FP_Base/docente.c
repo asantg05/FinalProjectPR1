@@ -39,7 +39,7 @@ void risika(){
         imprimirListaCartas(&jugadores[i].listaCartas);
     }*/
     imprimirInicio(&mazo,jugadores,nJugadores);
-    //imprimirTerritorios(territorios);
+    imprimirTerritorios(territorios);
     //imprimirArmadas(jugadores,nJugadores);
 
 }

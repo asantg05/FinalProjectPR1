@@ -1,12 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FP_Base.dir/main.c.obj"
-  "CMakeFiles/FP_Base.dir/docente.c.obj"
-  "CMakeFiles/FP_Base.dir/creacionListas.c.obj"
-  "CMakeFiles/FP_Base.dir/territorios.c.obj"
+  "CMakeFiles/FP_Base.dir/main.c.o"
+  "CMakeFiles/FP_Base.dir/docente.c.o"
+  "CMakeFiles/FP_Base.dir/creacionListas.c.o"
+  "CMakeFiles/FP_Base.dir/territorios.c.o"
   "FP_Base.pdb"
-  "FP_Base.exe"
-  "FP_Base.exe.manifest"
-  "FP_Base.lib"
+  "FP_Base"
 )
 
 # Per-language clean rules from dependency scanning.
