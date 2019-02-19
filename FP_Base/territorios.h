@@ -7,6 +7,7 @@
 Territorio* listaTerritorios();
 void asignarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores);
 void asignarNombreTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores);
+void escribirNombreTerritorios(Territorio territorios[]);
 
 void imprimirTerritorios(Territorio a[]);
 

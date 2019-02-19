@@ -53,10 +53,48 @@ Territorio* listaTerritorios(){
         territorios[i].numArmadas=0;
         territorios[i].prop=0;
         strcpy(territorios[i].nombre,"");
+        strcpy(territorios[i].nombreTerritorio,"");
     }
+
+    escribirNombreTerritorios(territorios);
 
     return territorios;
 }
+
+/**
+ * Write the name of each territory
+ * @param territorios
+ */
+void escribirNombreTerritorios(Territorio territorios[]){
+    strcpy(territorios[0].nombreTerritorio, "Psicologia");
+    strcpy(territorios[1].nombreTerritorio, "Filosofia");
+    strcpy(territorios[2].nombreTerritorio, "Pedagogia");
+    strcpy(territorios[3].nombreTerritorio, "Lettere");
+    strcpy(territorios[4].nombreTerritorio, "Lingue");
+    strcpy(territorios[5].nombreTerritorio, "Economia");
+    strcpy(territorios[6].nombreTerritorio, "Scienze Politiche");
+    strcpy(territorios[7].nombreTerritorio, "Giurisprudenza");
+    strcpy(territorios[8].nombreTerritorio, "Odontoiatria");
+    strcpy(territorios[9].nombreTerritorio, "Infermieristica");
+    strcpy(territorios[10].nombreTerritorio, "Medicina");
+    strcpy(territorios[11].nombreTerritorio, "Scienze Motorie");
+    strcpy(territorios[12].nombreTerritorio, "CTF");
+    strcpy(territorios[13].nombreTerritorio, "Tossicologia");
+    strcpy(territorios[14].nombreTerritorio, "Biologia");
+    strcpy(territorios[15].nombreTerritorio, "Scienze della Natura");
+    strcpy(territorios[16].nombreTerritorio, "Farmacia");
+    strcpy(territorios[17].nombreTerritorio, "Ing. Chimica");
+    strcpy(territorios[18].nombreTerritorio, "Ing. Meccanica");
+    strcpy(territorios[19].nombreTerritorio, "Ing. Elettronica");
+    strcpy(territorios[20].nombreTerritorio, "Architettura");
+    strcpy(territorios[21].nombreTerritorio, "Ing. Civile");
+    strcpy(territorios[22].nombreTerritorio, "Chimica");
+    strcpy(territorios[23].nombreTerritorio, "Fisica");
+    strcpy(territorios[24].nombreTerritorio, "Informatica");
+    strcpy(territorios[25].nombreTerritorio, "Matematica");
+
+}
+
 /**
  * Print all the territories of the game
  * @param a
@@ -64,6 +102,6 @@ Territorio* listaTerritorios(){
 void imprimirTerritorios(Territorio a[]){
     int i;
     for(i=0;i<N_MAX_TERRITORIOS;i++){
-        printf("\nID:%d\tArmies:%d\tOwner[#%d]: %s", a[i].id,a[i].numArmadas,a[i].prop,a[i].nombre);
+        printf("\nID[%d]: %s - Armies:%d - Owner[#%d]: %s", a[i].id,a[i].nombreTerritorio,a[i].numArmadas,a[i].prop,a[i].nombre);
     }
 }

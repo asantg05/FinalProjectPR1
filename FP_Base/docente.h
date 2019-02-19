@@ -58,7 +58,6 @@ typedef struct{
     char nombre[DIM_NAME+1];
     char color[DIM_COLOR];
     Lista listaCartas;
-    int territorios[56];
 }Persona;
 
 typedef struct{
@@ -66,6 +65,7 @@ typedef struct{
     int prop;
     int numArmadas;
     char nombre[DIM_NAME+1];
+    char nombreTerritorio[DIM_NAME+1];
 }Territorio;
 
 //----FUNCTIONS----
