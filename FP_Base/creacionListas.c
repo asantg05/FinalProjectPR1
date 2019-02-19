@@ -2,7 +2,11 @@
 #include "creacionListas.h"
 #include "docente.h"
 
-
+/**
+ * Initialization of the list of Cards of each player
+ * @param jugadores
+ * @param nJugadores
+ */
 void inicializarBarajas(Persona* jugadores, int nJugadores){
     int i=0;
 
@@ -11,11 +15,17 @@ void inicializarBarajas(Persona* jugadores, int nJugadores){
     }
 
 }
-
+/**
+ * Initializition the mazo
+ * @param lista
+ */
 void inicializaLista(Lista *lista){
     lista->first=NULL;
 }
-
+/**
+ * This method distribute the team of each card: BIRRA,VINO,CAFE
+ * @param lista
+ */
 void repartirEquipo(Lista *lista){
     Carta *it = lista->first;
 
@@ -32,7 +42,10 @@ void repartirEquipo(Lista *lista){
         it=it->next;
     }
 }
-
+/**
+ * This method shuffle the mazo
+ * @param lista
+ */
 void barajarMazo(Lista* lista){
     int random=0, random2=0;
 
@@ -75,7 +88,10 @@ Informacion* obtenerCarta(Lista* lista, int id){
     }
 
 }
-
+/**
+ * This function give the territories to the cards at the initial phase.
+ * @param lista
+ */
 void repartirTerritorio(Lista *lista){
     Carta *it = lista->first;
     int k=0;
@@ -86,7 +102,13 @@ void repartirTerritorio(Lista *lista){
         k++;
     }
 }
-
+/**
+ * It's a function used at the initial phase that give the cards to the players if they were ordered 0 to 25
+ * If the order was 2,0,1 --> Cards of 2: 0,3,6,9... Cards of 0: 1,4,7,10... , ....
+ * @param lista
+ * @param jugadores
+ * @param nJugadores
+ */
 void repartirCartas(Lista *lista , Persona* jugadores, int nJugadores){
     Carta *it = lista->first;
     int k=0;
@@ -97,7 +119,13 @@ void repartirCartas(Lista *lista , Persona* jugadores, int nJugadores){
         k++;
     }
 }
-
+/**
+ * This method let us know how many cards a player has, it's not int but when a card is found,
+ * "jugadores[i].numCartas++" is incremented
+ * @param lista
+ * @param jugadores
+ * @param nJugadores
+ */
 void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugadores){
     Carta * it = lista->first;
     int i=0, n=0;
@@ -117,7 +145,12 @@ void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugado
         it=it->next;
     }
 }
-
+/**
+ * When the cards are added to the list of cards of each player, this method let us know
+ * the number of the cards that owns
+ * @param baraja
+ * @param nJugadores
+ */
 void imprimirIds(Lista* baraja, int nJugadores){
     int i=0;
 
@@ -131,7 +164,12 @@ void imprimirIds(Lista* baraja, int nJugadores){
         }
     }
 }
-
+/**
+ * This is method that add the card to the list of cards of the player
+ * @param mazo
+ * @param listaJugadores
+ * @param nJugadores
+ */
 void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores){
     int i=0;
 
@@ -159,7 +197,12 @@ void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores){
         }
     }
 }
-
+/**
+ * Function that let us to put a Card at the beginning of the list of cards
+ * @param List of Cards
+ * @param Information that is gonna be saved
+ * @return The new card of the list
+ */
 Carta* insertarEnTesta(Lista *lista, Informacion infoCarta){
 
     Carta* cartaNueva= NULL;
@@ -196,11 +239,17 @@ Carta* crearCarta(Lista *lista){
 
     return insertarEnTesta(lista, infoCarta);
 }
-
+/**
+ * It prints each card of the list
+ * @param carta
+ */
 void imprimirCarta(Informacion carta){
     printf("\nTerritory: %d Owner: %d Team: %d" ,carta.numeroCarta , carta.propietario, carta.equipo);
 }
-
+/**
+ * Initialization of each card
+ * @return Informacion
+ */
 Informacion inicializarCarta(){
     Informacion iCarta;
 
@@ -211,15 +260,6 @@ Informacion inicializarCarta(){
 
     return iCarta;
 }
-
-/**
- * Function that let us to put a Card at the beginning of the list of cards
- * @param List of Cards
- * @param Information that is gonna be saved
- * @return The new card of the list
- */
-
-
 /**
  * This function is used for booking a space in the memory
  * @return the space in memory
@@ -233,7 +273,10 @@ Carta* colocarCarta(){
 
     return espacio;
 }
-
+/**
+ * It prints a list of Cards
+ * @param lista
+ */
 void imprimirListaCartas(Lista * lista){
     Carta *it = NULL;
     if(listaVacia(lista)==true){
@@ -245,7 +288,11 @@ void imprimirListaCartas(Lista * lista){
         it = it->next;
     }
 }
-
+/**
+ * It removes the cards of the lists of each player
+ * @param jugadores
+ * @param nJugadores
+ */
 void vaciarBarajas(Persona *jugadores, int nJugadores){
     int i=0;
 
@@ -253,7 +300,10 @@ void vaciarBarajas(Persona *jugadores, int nJugadores){
         vaciarListaCartas(&jugadores[i].listaCartas);
     }
 }
-
+/**
+ * It removes the cards of a List
+ * @param lista
+ */
 void vaciarListaCartas(Lista *lista){
     Carta *aux=NULL;
     Carta *it= lista->first;
@@ -273,19 +323,30 @@ void vaciarListaCartas(Lista *lista){
 
     //printf("...");
 }
-
+/**
+ * It removes all the information of a card
+ * @param carta
+ */
 void vaciarCarta(Carta *carta){
     free(carta);
     carta=NULL;
 }
-
+/**
+ * Checks if the list is empty or not
+ * @param lista
+ * @return
+ */
 _Bool listaVacia(Lista *lista){
     if(lista->first==NULL)//se la lista è vuota
         return true;
     else
         return false;
 }
-
+/**
+ * Count the number of cards of a list
+ * @param lista
+ * @return
+ */
 int contadorCartas(Lista * lista){
     int counter = 0;
     Carta * it = lista->first;
