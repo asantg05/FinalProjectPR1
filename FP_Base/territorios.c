@@ -1,7 +1,13 @@
 
 #include "docente.h"
 #include "territorios.h"
-
+/**
+ * Used for assigning the owner of each territory when the mazo has already been shuffled.
+ * We take the owner of the first distribution of cards.
+ * @param territorios
+ * @param jugadores
+ * @param nJugadores
+ */
 void asignarTerritorios(Territorio *territorios, Persona *jugadores, int nJugadores){
     int j=0;
     Carta* it=NULL;//Initializing the iterator
@@ -31,7 +37,10 @@ void asignarNombreTerritorios(Territorio *territorios, Persona *jugadores, int n
         }
     }
 }
-
+/**
+ * Initialize all the parameters of the Territory (ID,Name,A
+ * @return Territorio
+ */
 Territorio* listaTerritorios(){
     Territorio* territorios;
     int i=0;
@@ -48,7 +57,10 @@ Territorio* listaTerritorios(){
 
     return territorios;
 }
-
+/**
+ * Print all the territories of the game
+ * @param a
+ */
 void imprimirTerritorios(Territorio a[]){
     int i;
     for(i=0;i<N_MAX_TERRITORIOS;i++){
