@@ -18,13 +18,14 @@ void risika(){
     //-----INITIAL PHASE------
     crearTodasLasCartas(&mazo); //Let's create the 26 cards (creacionListas.c)
     repartirTerritorio(&mazo);//Charging the territories of each card (creacionListas.c)
-    //repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
-    //repartirEquipo(&mazo);//BIRRA, CAFE, VINO (creacionListas.c)
+    repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
+    repartirEquipo(&mazo);//BIRRA, CAFE, VINO (creacionListas.c)
+    barajarMazo(&mazo);//Changing positions of the cards in the mazo (creacionListas.c)
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);//Knowledge of the number of cards of each player (creacionListas.c)
     insertarEnBaraja(&mazo,jugadores,nJugadores);//Charging the cards of each player (creacionListas.c)
     territorios=listaTerritorios();//Let's create the list of Territories (territorios.c)
     asignarTerritorios(territorios,jugadores,nJugadores);//Assigning the Territories to players (territorios.c)
-    vaciarBarajas(jugadores,nJugadores);
+    //vaciarBarajas(jugadores,nJugadores);
     //repartirArmadas(territorios,jugadores,nJugadores);
 
     //imprimirInicio(&mazo,jugadores,nJugadores);
@@ -48,8 +49,8 @@ void repartirArmadas(Territorio* territorios , Persona* listaJugadores, int nJug
     int listaTerritorios[N_MAX_TERRITORIOS];
     _Bool esMiTerritorio=false;
 
-    for(i=0;i<N_MAX_TERRITORIOS;i++){
-        for(j=0;j<nJugadores;j++){
+    for(i=0;i<N_MAX_TERRITORIOS;i++){//In this part, we assign 1 army to each territory and...
+        for(j=0;j<nJugadores;j++){//discount one army of each player (20 armies - 5 territories = 15 armies)
             if(territorios[i].prop==listaJugadores[j].id){
                 listaJugadores[j].numArmadas--;
                 territorios[i].numArmadas++;
@@ -59,26 +60,26 @@ void repartirArmadas(Territorio* territorios , Persona* listaJugadores, int nJug
 
     do{
         printf("\n------------\n");
-
+        //Let's show each player of the game
         printf("Player[%d]: %s" , listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
         printf("\nCurrently, you have %d armies, CHOOSE the territory for adding 1-3 armies" , armadasARepartir);
-
+        //we show first, the number of armies and thenm which territory you want to choose
         do{
-            printf("\nYour territories are: ");
+            printf("\nYour territories are: ");//Here, we show the territories of each player
             for(i=0;i<N_MAX_TERRITORIOS;i++){
                 if(territorios[i].prop==listaJugadores[contadorJugador].id){
                     printf("%d," , territorios[i].id); //0,6,12
                 }
             }
 
-            printf("\nInsert Territory: ");
+            printf("\nInsert Territory: "); //Insert the territory
             scanf("%d" , &territorioElegido);
 
-            if(inputNoValido(territorioElegido)){
+            if(inputNoValido(territorioElegido)){//If it's an incorrect input, go back to scanf()
                 printf("\nWrite a territory of your property!");
             }else {
                 esMiTerritorio = miTerritorio(territorioElegido, contadorJugador, territorios, listaJugadores, nJugadores);
-                if (esMiTerritorio == false) {
+                if (esMiTerritorio == false) {//If it isn't his territory, go back to the scanf()
                     printf("\nWrite a territory of your property!");
                 }
             }

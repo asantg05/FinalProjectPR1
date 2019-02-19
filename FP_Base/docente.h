@@ -22,6 +22,7 @@
 #define DIM_6_PLAYERS 20
 #define DIM_NUM_CARTAS 26
 #define DIM_COLOR 10
+#define MAX_ID 25
 
 
 typedef enum {CAFE,BIRRA,VINO}Equipo; //0,1,2

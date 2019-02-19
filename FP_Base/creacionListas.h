@@ -21,6 +21,8 @@ void actualizarNumeroCartasPlayerN(Lista *lista,Persona* jugadores,int nJugadore
 void inicializarBarajas(Persona* jugadores, int nJugadores);
 void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores);
 void imprimirIds(Lista* baraja, int nJugadores);
+Informacion* obtenerCarta(Lista* lista, int id);
+void barajarMazo(Lista* lista);
 
 //-------PRINTS----------
 void imprimirInicio(Lista* lista, Persona* listaJugadores , int nJugadores);

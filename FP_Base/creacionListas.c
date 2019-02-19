@@ -33,6 +33,49 @@ void repartirEquipo(Lista *lista){
     }
 }
 
+void barajarMazo(Lista* lista){
+    int random=0, random2=0;
+
+    Carta* it= lista->first;//Iterator used for going through the list
+    Informacion* a=NULL;//we create a pointer of information for interchange the info
+    Informacion* b=NULL;
+    Informacion aux;
+
+    while(it!=NULL){
+        random=generateRandom(0,MAX_ID);//Used both of them for the method obtenerCarta()
+        random2=generateRandom(0,MAX_ID);//
+
+        a=obtenerCarta(lista,random); //Here we obtain the id of the cards
+        b=obtenerCarta(lista,random2);
+
+        aux=*a; //In this part we use the aux for interchange the info
+        *a=*b; //We acces to the pointers with *
+        *b=aux;
+
+        it=it->next;//iterator++
+    }
+
+}
+
+/**
+ * Method used for obtaining the Information of a Cards
+ * @param lista
+ * @param id
+ * @return All the Information of the card
+ */
+Informacion* obtenerCarta(Lista* lista, int id){
+    Carta* it= lista->first;
+
+    while(it!=NULL){ //5
+
+        if(it->inf.numeroCarta==id){
+            return &it->inf;
+        }
+        it=it->next;
+    }
+
+}
+
 void repartirTerritorio(Lista *lista){
     Carta *it = lista->first;
     int k=0;
@@ -98,13 +141,25 @@ void insertarEnBaraja(Lista* mazo, Persona* listaJugadores, int nJugadores){
     while(it!=NULL){
         for(i=0;i<nJugadores;i++){
             if(it!=NULL){
-                insertarEnTesta(&listaJugadores[i].listaCartas,it->inf);
-                it=it->next;
-
+                if (listaJugadores[i].id == it->inf.numeroCarta) {
+                    insertarEnTesta(&listaJugadores[i].listaCartas, it->inf);
+                    it = it->next;
+                }
             }
         }
-
     }
+}
+
+Carta* insertarEnTesta(Lista *lista, Informacion infoCarta){
+
+    Carta* cartaNueva= NULL;
+    cartaNueva = colocarCarta();
+
+    cartaNueva->inf=infoCarta;//l'elemento da inserire prende il contatto passato come paramentro
+    cartaNueva->next=lista->first;//la testa della lista diventa il next del nuovoElemento
+    lista->first= cartaNueva;//la testa della lista diventa il next del nuovoElemento
+
+    return cartaNueva;
 }
 
 /**
@@ -153,17 +208,7 @@ Informacion inicializarCarta(){
  * @param Information that is gonna be saved
  * @return The new card of the list
  */
-Carta* insertarEnTesta(Lista *lista, Informacion infoCarta){
 
-    Carta* cartaNueva= NULL;
-    cartaNueva = colocarCarta();
-
-    cartaNueva->inf=infoCarta;//l'elemento da inserire prende il contatto passato come paramentro
-    cartaNueva->next=lista->first;//la testa della lista diventa il next del nuovoElemento
-    lista->first= cartaNueva;//la testa della lista diventa il next del nuovoElemento
-
-    return cartaNueva;
-}
 
 /**
  * This function is used for booking a space in the memory
