@@ -6,25 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.c
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.c
 creacionListas.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.c
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.c
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 creacionListas.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/creacionListas.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/creacionListas.h
 territorios.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 stdio.h
 -
 stdbool.h
@@ -36,19 +36,19 @@ time.h
 string.h
 -
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/main.c
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 stdio.h
 -
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.c
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.c
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 territorios.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h
 
-/home/sommo-cedro/Scrivania/FP_Base_FU/territorios.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/territorios.h
 docente.h
-/home/sommo-cedro/Scrivania/FP_Base_FU/docente.h
+C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h
 

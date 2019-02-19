@@ -146,7 +146,7 @@ void imprimirArmadas(Persona* listaJugadores, int nJugadores){
     printf("\n");
     for(i=0;i<nJugadores;i++){
         printf("Jugador[%d] Armadas:%d Territories:%d\n" , listaJugadores[i].id ,listaJugadores[i].numArmadas,
-                listaJugadores[i].numTerritorios);
+               listaJugadores[i].numTerritorios);
     }
 
 }

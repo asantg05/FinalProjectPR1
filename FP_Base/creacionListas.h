@@ -3,6 +3,7 @@
 #ifndef FP_BASE_CREACIONLISTAS_H
 #define FP_BASE_CREACIONLISTAS_H
 
+
 Carta* crearCarta(Lista *lista);
 Carta* insertarEnTesta(Lista *lista, Informacion infoCarta);
 Carta* colocarCarta();
