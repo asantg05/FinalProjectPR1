@@ -6,7 +6,7 @@ file(REMOVE_RECURSE
   "FP_Base.pdb"
   "FP_Base.exe"
   "FP_Base.exe.manifest"
-  "FP_Base.lib"
+  "libFP_Base.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

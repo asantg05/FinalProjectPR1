@@ -151,7 +151,7 @@ void actualizarNumeroCartasPlayerN(Lista *lista, Persona* jugadores, int nJugado
  * @param baraja
  * @param nJugadores
  */
-void imprimirIds(Lista* baraja, int nJugadores){
+void imprimirIdsCartas(Lista *baraja, int nJugadores){
     int i=0;
 
     Carta* it= NULL;

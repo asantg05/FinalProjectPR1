@@ -48,7 +48,7 @@ Territorio* listaTerritorios(){
     territorios=malloc(sizeof(Territorio)*N_MAX_TERRITORIOS);
     territorios[N_MAX_TERRITORIOS];
 
-    for(i=0;i<N_MAX_TERRITORIOS;i++){   //We assign an ID
+    for(i=0;i<N_MAX_TERRITORIOS;i++){   //We Initialize the territories
         territorios[i].id=i;
         territorios[i].numArmadas=0;
         territorios[i].prop=0;

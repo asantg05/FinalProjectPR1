@@ -9,7 +9,11 @@ void risika(){
     Lista mazo; //In this list, we will do all the changes
     int nJugadores, i;
 
-    nJugadores= cantidadJugadores();//3,4,5,6
+    /*¡¡IMPORTANT!! --> In this part, my PC is not able to charge correctly the randomly amount of players
+     * and the first player of the game (In the Fabio's PC worked perfectly). So we finally decided that the best
+     * option would be that I could continue programming stablishing a certain number for each fields. For example: 6 players
+     * and the player with the Id=1 starts the game*/
+    nJugadores= 6;//cantidadJugadores();//3,4,5,6
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
 
     inicializaLista(&mazo);//initializing mazzo
@@ -133,7 +137,7 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
         printf(" Army Color: %s\t" , listaJugadores[i].color);
         printf(" Number of Cards:%d \t" , listaJugadores[i].numCartas);
         printf(" List of Cards: ");
-        imprimirIds(&listaJugadores[i].listaCartas, nJugadores);
+        imprimirIdsCartas(&listaJugadores[i].listaCartas, nJugadores);
         printf("\n");
         /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13,5,6,4*/
     }
@@ -172,7 +176,8 @@ Persona* creacionPersonas(int dimensionVector){
         jugadoresOrdenados[i].id=0;
     }
 
-    //Let's see who goes first
+    /*It means that the one who starts the game, it's the element 1 of the dinamic vector "jugadores" and not
+     * the id of the player*/
     primerJugador = empiezaPrimero(dimensionVector); //0,1,2,3,4,5
 
     jugadoresOrdenados[0].id=primerJugador;   //2
