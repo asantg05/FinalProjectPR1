@@ -13,7 +13,7 @@ void risika(){
      * and the first player of the game (In the Fabio's PC worked perfectly). So we finally decided that the best
      * option would be that I could continue programming stablishing a certain number for each fields. For example: 6 players
      * and the player with the Id=1 starts the game*/
-    nJugadores= 6;//cantidadJugadores();//3,4,5,6
+    nJugadores= 4;//cantidadJugadores();//3,4,5,6
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
 
     inicializaLista(&mazo);//initializing mazzo
@@ -30,87 +30,190 @@ void risika(){
     territorios=listaTerritorios();//Let's create the list of Territories (territorios.c)
     asignarTerritorios(territorios,jugadores,nJugadores);//Assigning the Territories to players (territorios.c)
     //vaciarBarajas(jugadores,nJugadores);
-    repartirArmadas(territorios,jugadores,nJugadores);
+    reenforzamientoInicial(territorios, jugadores, nJugadores);
 
     //imprimirInicio(&mazo,jugadores,nJugadores);
     //-----REINFORCEMENT------
 
 
     //IMPRESIONES
-    imprimirListaCartas(&mazo);
+    //imprimirListaCartas(&mazo);
     /*for(i=0;i<nJugadores;i++){
         printf("\n-----Jugador %d------" , jugadores[i].id);
         imprimirListaCartas(&jugadores[i].listaCartas);
     }*/
     imprimirInicio(&mazo,jugadores,nJugadores);
-    imprimirTerritorios(territorios);
+    //imprimirTerritorios(territorios);
     //imprimirArmadas(jugadores,nJugadores);
 
 }
 
-void repartirArmadas(Territorio* territorios , Persona* listaJugadores, int nJugadores){
-    int i=0,j=0, contadorJugador=0, territorioElegido=0, numArmadasInsertadas=0, armadasARepartir, armadasAcumuladas=0;
-    int listaTerritorios[N_MAX_TERRITORIOS];
-    _Bool esMiTerritorio=false, finTurno=false;
+void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, int nJugadores) {
+    int i = 0, j = 0, contadorJugador = 0, territorioElegido = 0, numArmadasInsertadas = 0, armadasAcumuladas = 0;
+    int armadasIniciales, counter=0, nRondas, armadasFinales=0, inputFinal=0;
+    _Bool esMiTerritorio = false, finTurno = false;
 
-    for(i=0;i<N_MAX_TERRITORIOS;i++){//In this part, we assign 1 army to each territory and...
-        for(j=0;j<nJugadores;j++){//discount one army of each player (20 armies - 5 territories = 15 armies)
-            if(territorios[i].prop==listaJugadores[j].id){
+    armadasIniciales=numeroArmadasIniciales(nJugadores); //We use this for controlling the number of rounds in the initial reinforcement
+
+    ////In this part, we assign 1 army to each territory and discount one army of each player (20 armies - 5 territories = 15 armies)
+    for (i = 0; i < N_MAX_TERRITORIOS; i++) {
+        for (j = 0; j < nJugadores; j++) {
+            if (territorios[i].prop == listaJugadores[j].id) {
                 listaJugadores[j].numArmadas--;
                 territorios[i].numArmadas++;
+                armadasIniciales--; //16,15,14,13 --> 15 (5 territorios)
             }
         }
     }
 
-    do{
-        printf("\n------------\n");
-        armadasARepartir=3;
-        //Let's show each player of the game
-        printf("Player[%d]: %s" , listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
-        printf("\nCurrently, you have %d armies, CHOOSE the territory for adding 1-3 armies" , armadasARepartir);
-        //we show first, the number of armies and thenm which territory you want to choose
+    //Let's do the Distribution
+    do{//Rounds of the Initial Reinforcement --> numeroRondas()
+        do {//Control of each turn
+            //If the amount of armies is 0, it goes to the next player
+            if(listaJugadores[contadorJugador].numArmadas==0){
+                contadorJugador++;
+            }else{//If the armies are !=0, enters here
+                //If the armies are less than 3 armies
+                if(listaJugadores[contadorJugador].numArmadas<3){
+                    printf("\n------------\n");
+                    armadasFinales=listaJugadores[contadorJugador].numArmadas;
 
-        do{//Rules each turn of the players
-            printf("\nYour territories are: ");//Here, we show the territories of each player
-            for(i=0;i<N_MAX_TERRITORIOS;i++){
-                if(territorios[i].prop==listaJugadores[contadorJugador].id){
-                    printf("%d," , territorios[i].id); //0,6,12
-                }
-            }
+                    //We show only the players with less than 3 armies
+                    printf("Player[%d]: %s", listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
+                    printf("\nYou can only add %d to your territories" , armadasFinales);
 
-            printf("\nInsert Territory: "); //Insert the territory
-            scanf("%d" , &territorioElegido);
+                    do {//Rules each insertion of armies
+                        printf("\nYour territories are: ");//Here, we show the territories of each player
+                        for (i = 0; i < N_MAX_TERRITORIOS; i++) {
+                            if (territorios[i].prop == listaJugadores[contadorJugador].id) {
+                                printf("%d,", territorios[i].id); //0,6,12
+                            }
+                        }
 
-            if(inputNoValido(territorioElegido)){//If it's an incorrect input, go back to scanf()
-                printf("\nWrite a property between 0 and 25");
-            }else {
-                esMiTerritorio = miTerritorio(territorioElegido, contadorJugador, territorios, listaJugadores, nJugadores);
-                if (esMiTerritorio == false) {//If it isn't his territory, go back to the scanf()
-                    printf("\nWrite a territory of your property!");
-                }
-            }
-        }while(esMiTerritorio==false);
+                        printf("\nInsert Territory: "); //Insert the territory
+                        scanf("%d", &territorioElegido);
 
-        do{//Checks if the armies that will be added, are between 1-3
-            printf("\nTerritory[%d] - insert armies: (<-- PRESS 0 FOR GOING BACK) ",territorios[territorioElegido].id);
-            scanf("%d" , &numArmadasInsertadas); //1,2,3
+                        if (inputNoValido(territorioElegido)) {//If it's an incorrect input, go back to scanf()
+                            printf("\nWrite a property between 0 and 25");
+                        } else {
+                            esMiTerritorio = miTerritorio(territorioElegido, contadorJugador, territorios, listaJugadores,
+                                                          nJugadores);
+                            if (esMiTerritorio == false) {//If it isn't his territory, go back to the scanf()
+                                printf("\nWrite a territory of your property!");
+                            }
+                        }
+                    } while (esMiTerritorio == false);
 
-            if(numArmadasInsertadas>3 || numArmadasInsertadas<1){
-                printf("\nYou can only add 1-3 armies");
-            }
-        }while(numArmadasInsertadas>3 || numArmadasInsertadas<0);
+                    do {//Checks if the armies that will be added, are between 1-3
+                        printf("\nTerritory[%d] - insert armies: (<-- PRESS 0 FOR GOING BACK) ", territorios[territorioElegido].id);
+                        scanf("%d", &inputFinal); //1,2,3
 
-        territorios[territorioElegido].numArmadas+=numArmadasInsertadas;//Adding armies to territories
-        listaJugadores[contadorJugador].numArmadas-=numArmadasInsertadas;//Removing armies of players
-        armadasAcumuladas+=numArmadasInsertadas;
+                        if (inputFinal > 3 || inputFinal < 1) {
+                            printf("\nYou can only add %d or less armies" , armadasFinales);
+                        }
 
-        //Rules each turn of the players
-        if(armadasAcumuladas>=3){
-            contadorJugador++;//It goes to the next turn
-            armadasAcumuladas=0;//This value it's refreshed because it changes on each iteration
-        }
-    }while(contadorJugador<nJugadores);
+                    } while (inputFinal>armadasFinales || inputFinal<0);//armadasFinales=2
 
+                    territorios[territorioElegido].numArmadas += inputFinal;//Adding armies to territories
+                    listaJugadores[contadorJugador].numArmadas -= inputFinal;//Removing armies of players
+                    imprimirArmadas(listaJugadores,nJugadores);
+
+                }else{//If the armies are > 3
+
+                    //Here we show the players with more than 3 armies
+                    printf("\n------------\n");
+                    //Let's show each player of the game
+                    printf("Player[%d]: %s", listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
+                    printf("\nCurrently, you have %d armies, CHOOSE the territory for adding 1-3 armies", (3 - armadasAcumuladas));
+                    //we show first, the number of armies and thenm which territory you want to choose
+
+                    do {//Rules each insertion of armies
+                        printf("\nYour territories are: ");//Here, we show the territories of each player
+                        for (i = 0; i < N_MAX_TERRITORIOS; i++) {
+                            if (territorios[i].prop == listaJugadores[contadorJugador].id) {
+                                printf("%d,", territorios[i].id); //0,6,12
+                            }
+                        }
+
+                        printf("\nInsert Territory: "); //Insert the territory
+                        scanf("%d", &territorioElegido);
+
+                        if (inputNoValido(territorioElegido)) {//If it's an incorrect input, go back to scanf()
+                            printf("\nWrite a property between 0 and 25");
+                        } else {
+                            esMiTerritorio = miTerritorio(territorioElegido, contadorJugador, territorios, listaJugadores,
+                                                          nJugadores);
+                            if (esMiTerritorio == false) {//If it isn't his territory, go back to the scanf()
+                                printf("\nWrite a territory of your property!");
+                            }
+                        }
+                    } while (esMiTerritorio == false);
+
+                    do {//Checks if the armies that will be added, are between 1-3
+                        printf("\nTerritory[%d] - insert armies: (<-- PRESS 0 FOR GOING BACK) ", territorios[territorioElegido].id);
+                        scanf("%d", &numArmadasInsertadas); //1,2,3
+
+                        if (numArmadasInsertadas > 3 || numArmadasInsertadas < 1) {
+                            printf("\nYou can only add 1-3 armies");
+                        }
+
+                    } while (numArmadasInsertadas>3 || numArmadasInsertadas<0);
+
+                    territorios[territorioElegido].numArmadas += numArmadasInsertadas;//Adding armies to territories
+                    listaJugadores[contadorJugador].numArmadas -= numArmadasInsertadas;//Removing armies of players
+                    armadasAcumuladas += numArmadasInsertadas;//input=2 --> armAcum=2
+
+                    //When the armies are greater than 3, we return to the scanf on this way
+                    if(armadasAcumuladas>3){
+                        armadasAcumuladas-=numArmadasInsertadas;//Discounting the wrong input armies
+                        printf("\nYou only have %d armies" , (3-armadasAcumuladas));
+                    }
+
+                    //Rules each turn of the players
+                    if (armadasAcumuladas == 3) {
+                        contadorJugador++;//It goes to the next turn
+                        armadasAcumuladas = 0;//This value it's refreshed because it changes on each iteration
+                    }
+
+                    imprimirArmadas(listaJugadores,nJugadores);
+                }//If the armies are > 3
+
+            }//If the armies !=0
+
+        } while (contadorJugador < nJugadores);
+
+        contadorJugador=0;//We refresh the counter of the players
+        nRondas=numeroRondas(nJugadores);
+        counter++;
+    }while(counter<nRondas);
+}
+
+/**
+ * This function is used for knowing the number of rounds in the initial reinforcement.
+ * 3 Players = 9 Rounds
+ * 4 Players = 8 Rounds
+ * 5 Players = 7 Rounds
+ * 6 Players = 6 Rounds
+ * @param nJugadores
+ * @return
+ */
+int numeroRondas(int nJugadores){
+    int rondas;
+
+    if(nJugadores==3){
+        rondas=9; //35
+    }
+    else if(nJugadores==4){
+        rondas=8; //30
+    }
+    else if(nJugadores==5){
+        rondas=7; //25
+    }
+    else{
+        rondas= 6; //20
+    }
+
+    return rondas;
 }
 
 _Bool miTerritorio(int territorioElegido, int idJugador, Territorio* territorios , Persona* listaJugadores, int nJugadores){
