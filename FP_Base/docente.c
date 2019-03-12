@@ -19,7 +19,7 @@ void risika(){
     inicializaLista(&mazo);//initializing mazzo
     inicializarBarajas(jugadores,nJugadores); //Initializing list of each player
 
-    //-----INITIAL PHASE------
+    //-----INITIAL PHASE------//
     crearTodasLasCartas(&mazo); //Let's create the 26 cards (creacionListas.c)
     repartirTerritorio(&mazo);//Charging the territories of each card (creacionListas.c)
     repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
@@ -30,11 +30,10 @@ void risika(){
     territorios=listaTerritorios();//Let's create the list of Territories (territorios.c)
     asignarTerritorios(territorios,jugadores,nJugadores);//Assigning the Territories to players (territorios.c)
     //vaciarBarajas(jugadores,nJugadores);
-    reenforzamientoInicial(territorios, jugadores, nJugadores);
+    //preparacionArmadas(territorios, jugadores, nJugadores);
 
-    //imprimirInicio(&mazo,jugadores,nJugadores);
-    //-----REINFORCEMENT------
-
+    //-----REINFORCEMENT------//
+    reforzamiento(territorios,jugadores,nJugadores);
 
     //IMPRESIONES
     //imprimirListaCartas(&mazo);
@@ -43,15 +42,39 @@ void risika(){
         imprimirListaCartas(&jugadores[i].listaCartas);
     }*/
     imprimirInicio(&mazo,jugadores,nJugadores);
-    //imprimirTerritorios(territorios);
+    imprimirTerritorios(territorios);
     //imprimirArmadas(jugadores,nJugadores);
 
 }
 
-void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, int nJugadores) {
+void reforzamiento(Territorio *territorios, Persona *listaJugadores, int nJugadores){
+    int contadorJugador=0, armsExtra;
+
+    printf("\n----------RISIKA STARTS-----------");
+    printf("\n");
+    do{
+        printf("\nPlayer[%d]: %s", listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
+        printf("\nTerritories: %d", listaJugadores[contadorJugador].numTerritorios);
+
+        armsExtra=armadasExtra(listaJugadores,nJugadores,contadorJugador);
+        printf("\nExtra Armies: %d",armsExtra);
+        printf("\n-----------------");
+
+        contadorJugador++;
+    }while (contadorJugador<nJugadores);
+}
+
+int armadasExtra(Persona *listaJugadores, int nJugadores, int contadorJugador){
+    int arms=0;
+
+    arms=listaJugadores[contadorJugador].numTerritorios/3;//5:3= 1 armada extra
+    return arms;
+}
+
+void preparacionArmadas(Territorio *territorios, Persona *listaJugadores, int nJugadores) {
     int i = 0, j = 0, contadorJugador = 0, territorioElegido = 0, numArmadasInsertadas = 0, armadasAcumuladas = 0;
     int armadasIniciales, counter=0, nRondas, armadasFinales=0, inputFinal=0;
-    _Bool esMiTerritorio = false, finTurno = false;
+    _Bool esMiTerritorio = false;
 
     armadasIniciales=numeroArmadasIniciales(nJugadores); //We use this for controlling the number of rounds in the initial reinforcement
 
@@ -75,10 +98,10 @@ void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, in
             }else{//If the armies are !=0, enters here
                 //If the armies are less than 3 armies
                 if(listaJugadores[contadorJugador].numArmadas<3){
-                    printf("\n------------\n");
                     armadasFinales=listaJugadores[contadorJugador].numArmadas;
 
                     //We show only the players with less than 3 armies
+                    printf("\n------------\n");
                     printf("Player[%d]: %s", listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
                     printf("\nYou can only add %d to your territories" , armadasFinales);
 
@@ -105,7 +128,7 @@ void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, in
                     } while (esMiTerritorio == false);
 
                     do {//Checks if the armies that will be added, are between 1-3
-                        printf("\nTerritory[%d] - insert armies: (<-- PRESS 0 FOR GOING BACK) ", territorios[territorioElegido].id);
+                        printf("\nTerritory[%d] - insert armies: ", territorios[territorioElegido].id);
                         scanf("%d", &inputFinal); //1,2,3
 
                         if (inputFinal > 3 || inputFinal < 1) {
@@ -116,13 +139,13 @@ void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, in
 
                     territorios[territorioElegido].numArmadas += inputFinal;//Adding armies to territories
                     listaJugadores[contadorJugador].numArmadas -= inputFinal;//Removing armies of players
-                    imprimirArmadas(listaJugadores,nJugadores);
+                    //imprimirArmadas(listaJugadores,nJugadores);
 
                 }else{//If the armies are > 3
 
                     //Here we show the players with more than 3 armies
-                    printf("\n------------\n");
                     //Let's show each player of the game
+                    printf("\n------------\n");
                     printf("Player[%d]: %s", listaJugadores[contadorJugador].id, listaJugadores[contadorJugador].nombre);
                     printf("\nCurrently, you have %d armies, CHOOSE the territory for adding 1-3 armies", (3 - armadasAcumuladas));
                     //we show first, the number of armies and thenm which territory you want to choose
@@ -150,7 +173,7 @@ void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, in
                     } while (esMiTerritorio == false);
 
                     do {//Checks if the armies that will be added, are between 1-3
-                        printf("\nTerritory[%d] - insert armies: (<-- PRESS 0 FOR GOING BACK) ", territorios[territorioElegido].id);
+                        printf("\nTerritory[%d] - insert armies: ", territorios[territorioElegido].id);
                         scanf("%d", &numArmadasInsertadas); //1,2,3
 
                         if (numArmadasInsertadas > 3 || numArmadasInsertadas < 1) {
@@ -175,7 +198,7 @@ void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, in
                         armadasAcumuladas = 0;//This value it's refreshed because it changes on each iteration
                     }
 
-                    imprimirArmadas(listaJugadores,nJugadores);
+                    //imprimirArmadas(listaJugadores,nJugadores);
                 }//If the armies are > 3
 
             }//If the armies !=0

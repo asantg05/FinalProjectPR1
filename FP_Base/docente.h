@@ -76,8 +76,10 @@ void risika();
 Persona* creacionPersonas(int dimensionVector);
 
 //Territorio Methods
-void reenforzamientoInicial(Territorio *territorios, Persona *listaJugadores, int nJugadores);
+void preparacionArmadas(Territorio *territorios, Persona *listaJugadores, int nJugadores);
 int numeroRondas(int nJugadores);
+int armadasExtra(Persona *listaJugadores, int nJugadores, int contadorJugador);
+void reforzamiento(Territorio *territorios, Persona *listaJugadores, int nJugadores);
 
 //Other methods
 int numeroArmadasIniciales(int nJugadores);
