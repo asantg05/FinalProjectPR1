@@ -78,7 +78,7 @@ Persona* creacionPersonas(int dimensionVector);
 //Territorio Methods
 void preparacionArmadas(Territorio *territorios, Persona *listaJugadores, int nJugadores);
 int numeroRondas(int nJugadores);
-int armadasExtra(Persona *listaJugadores, int nJugadores, int contadorJugador);
+int armadasExtra(Persona *listaJugadores,int contadorJugador);
 void reforzamiento(Territorio *territorios, Persona *listaJugadores, int nJugadores);
 
 //Other methods
