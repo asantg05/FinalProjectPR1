@@ -176,6 +176,33 @@ docente.c.s:
 	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make CMakeFiles/FP_Base.dir/docente.c.s
 .PHONY : docente.c.s
 
+juego.obj: juego.c.obj
+
+.PHONY : juego.obj
+
+# target to build an object file
+juego.c.obj:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make CMakeFiles/FP_Base.dir/juego.c.obj
+.PHONY : juego.c.obj
+
+juego.i: juego.c.i
+
+.PHONY : juego.i
+
+# target to preprocess a source file
+juego.c.i:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make CMakeFiles/FP_Base.dir/juego.c.i
+.PHONY : juego.c.i
+
+juego.s: juego.c.s
+
+.PHONY : juego.s
+
+# target to generate assembly for a file
+juego.c.s:
+	$(MAKE) -f CMakeFiles\FP_Base.dir\build.make CMakeFiles/FP_Base.dir/juego.c.s
+.PHONY : juego.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -245,6 +272,9 @@ help:
 	@echo ... docente.obj
 	@echo ... docente.i
 	@echo ... docente.s
+	@echo ... juego.obj
+	@echo ... juego.i
+	@echo ... juego.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

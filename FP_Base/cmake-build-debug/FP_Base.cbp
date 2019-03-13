@@ -86,6 +86,12 @@
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/docente.h">
 			<Option target="FP_Base"/>
 		</Unit>
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/juego.c">
+			<Option target="FP_Base"/>
+		</Unit>
+		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/juego.h">
+			<Option target="FP_Base"/>
+		</Unit>
 		<Unit filename="C:/Users/ANDRES/Documents/2018-19/UNICA/PR1/PROYECTO-FINAL-RISIKA/FP_Base/main.c">
 			<Option target="FP_Base"/>
 		</Unit>

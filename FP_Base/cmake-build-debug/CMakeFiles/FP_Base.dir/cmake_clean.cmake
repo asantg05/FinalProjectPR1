@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/FP_Base.dir/docente.c.obj"
   "CMakeFiles/FP_Base.dir/creacionListas.c.obj"
   "CMakeFiles/FP_Base.dir/territorios.c.obj"
+  "CMakeFiles/FP_Base.dir/juego.c.obj"
   "FP_Base.pdb"
   "FP_Base.exe"
   "FP_Base.exe.manifest"

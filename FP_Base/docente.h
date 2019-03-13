@@ -69,17 +69,14 @@ typedef struct{
 }Territorio;
 
 //----FUNCTIONS----
-
 void risika();
 
 //Persona Methods
 Persona* creacionPersonas(int dimensionVector);
 
 //Territorio Methods
-void preparacionArmadas(Territorio *territorios, Persona *listaJugadores, int nJugadores);
-int numeroRondas(int nJugadores);
-int armadasExtra(Persona *listaJugadores,int contadorJugador);
-void reforzamiento(Territorio *territorios, Persona *listaJugadores, int nJugadores);
+void turno(Territorio *territorios, Persona *listaJugadores, int nJugadores);
+void batalla(Territorio *territorios, Persona *listaJugadores, int nJugadores,int contadorJugador);
 
 //Other methods
 int numeroArmadasIniciales(int nJugadores);
@@ -87,8 +84,6 @@ int cantidadJugadores();
 int empiezaPrimero(int nJugadores);
 void generateSeed();
 int generateRandom(int min, int max);
-_Bool inputNoValido(int territorioElegido);
-_Bool miTerritorio(int territorioElegido, int idJugador, Territorio* territorios , Persona* listaJugadores, int nJugadores);
 _Bool isAdjacent(int idFirst, int idSecond);
 
 //-------PRINTS----------
