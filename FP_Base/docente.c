@@ -11,10 +11,10 @@ void risika(){
     int nJugadores, i;
 
     /*¡¡IMPORTANT!! --> In this part, my PC is not able to charge correctly the randomly amount of players
-     * and the first player of the game (In the Fabio's PC worked perfectly). So we finally decided that the best
-     * option would be that I could continue programming stablishing a certain number for each fields. For example: 6 players
-     * and the player with the Id=1 starts the game*/
-    nJugadores= 4;//cantidadJugadores();//3,4,5,6
+     * (In the Fabio's PC worked perfectly). So we finally decided that the best
+     * option would be that I could continue programming stablishing a certain number for each fields. For example: 6 or 4 players*/
+
+    nJugadores= cantidadJugadores();//3,4,5,6 -- Calling a method that creates a random number between 3-6
     jugadores = creacionPersonas(nJugadores); //We save in dinamic vector the list of players before initializing
 
     inicializaLista(&mazo);//initializing mazzo
@@ -25,37 +25,49 @@ void risika(){
     repartirTerritorio(&mazo);//Charging the territories of each card (creacionListas.c)
     repartirCartas(&mazo , jugadores, nJugadores);//Charging owners of each card (creacionListas.c)
     repartirEquipo(&mazo);//BIRRA, CAFE, VINO (creacionListas.c)
-    barajarMazo(&mazo);//Changing positions of the cards in the mazo (creacionListas.c)
+    barajarMazo(&mazo);//Changing positions of the cards in the mazo (creacionListas.c) --> "Mischiando"
     actualizarNumeroCartasPlayerN(&mazo,jugadores,nJugadores);//Knowledge of the number of cards of each player (creacionListas.c)
     insertarEnBaraja(&mazo,jugadores,nJugadores);//Charging the cards of each player (creacionListas.c)
     territorios=listaTerritorios();//Let's create the list of Territories (territorios.c)
     asignarTerritorios(territorios,jugadores,nJugadores);//Assigning the Territories to players (territorios.c)
-    vaciarBarajas(jugadores,nJugadores);//When we have distributed all the cards for knowing the territories, we return the cards to mazo
+    //vaciarBarajas(jugadores,nJugadores);//When we have distributed all the cards for knowing the territories, we return the cards to mazo
+
+    imprimirInicio(&mazo,jugadores,nJugadores);//In this method we present all the players
 
     //-----REINFORCEMENT------//
     preparacionArmadas(territorios, jugadores, nJugadores);//It happens before the game begins (juego.c)
-    //turno(territorios,jugadores,nJugadores);
-
-    //-----IMPRESIONES--------//
-
-    //imprimirInicio(&mazo,jugadores,nJugadores);
-    //imprimirTerritorios(territorios);
-    //imprimirArmadas(jugadores,nJugadores);
-
+    turno(territorios,jugadores,nJugadores);//This would be the method that contains the bonus armies, battle and recolocation
 }
 
+/**
+ * This method controls the 3 phases of the turn of each player
+ * @param territorios
+ * @param listaJugadores
+ * @param nJugadores
+ */
 void turno(Territorio *territorios, Persona *listaJugadores, int nJugadores){
     int contadorJugador=0;
 
-    do{
+   /*There was a do-while that would be used for controlling the 3 phases of the turn
+    * Then, the method battle() and recolocation will be also implemented. So, I will only
+    * show how it is done the first phase of the turn*/
+
+    //do{
         reforzamiento(territorios,listaJugadores,nJugadores,contadorJugador);//First phase of the turn
-        //batalla
-        //colocacion
-        contadorJugador++;
-    }while (contadorJugador<nJugadores);
+        //battle
+        //recolocation
+        //contadorJugador++;
+    //}while (contadorJugador<nJugadores);
 
 }
 
+/**
+ * This method is used to implement the battle in each turn of the player.
+ * @param territorios
+ * @param listaJugadores
+ * @param nJugadores
+ * @param contadorJugador
+ */
 void batalla(Territorio *territorios, Persona *listaJugadores, int nJugadores, int contadorJugador){
     _Bool atacar=false;
 
@@ -86,7 +98,6 @@ void imprimirInicio(Lista* lista, Persona* listaJugadores ,int nJugadores){
         printf("\n");
         /*EXAMPLE: Name of Player: Francesca Army Color: ROSSO Numero carte: 1 List of Cards: 13,5,6,4*/
     }
-
 }
 
 /**

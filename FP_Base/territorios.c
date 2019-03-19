@@ -56,7 +56,7 @@ Territorio* listaTerritorios(){
         strcpy(territorios[i].nombreTerritorio,"");
     }
 
-    escribirNombreTerritorios(territorios);
+    escribirNombreTerritorios(territorios);// Write the name of each territory
 
     return territorios;
 }
